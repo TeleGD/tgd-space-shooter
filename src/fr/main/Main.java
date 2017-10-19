@@ -26,7 +26,7 @@ public class Main extends StateBasedGame {
 
 
 	public Main() {
-		super("Bonjour à tous et à toutes");
+		super("Bonjour Ã  tous et Ã  toutes");
 		}
 
 
