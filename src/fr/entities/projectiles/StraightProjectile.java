@@ -31,6 +31,7 @@ public class StraightProjectile extends Movable implements Circle{
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		moveY(delta);
 	}
 	
 	public boolean colPlayer() {
