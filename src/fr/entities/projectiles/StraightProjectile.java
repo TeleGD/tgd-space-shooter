@@ -14,11 +14,14 @@ public class StraightProjectile extends Movable implements Circle{
 
 	private double radius;
 	
+	private Player p;
+	
 	public StraightProjectile(double centerPointX, double centerPointY, double radius,Player player) {
-		x = 500;
-		y = 500;
+		x = centerPointX;
+		y = centerPointY;
 		this.radius = radius;
-		speedY = 5;
+		speedY = 0.5;
+		p = player;
 	}
 	
 	@Override

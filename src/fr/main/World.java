@@ -3,6 +3,7 @@ package fr.main;
 
 import java.util.ArrayList;
 
+import org.lwjgl.util.glu.Project;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -12,26 +13,31 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entities.characters.Player;
+import fr.entities.projectiles.StraightProjectile;
 
 
 public class World extends BasicGameState {
 
 	public static int ID = 0;
 	private static Player Nico;
+	private static StraightProjectile proj;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		Nico=new Player(100,100,16);
+		proj = new StraightProjectile(200, 200, 5, Nico);
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		Nico.render(arg0, arg1, arg2);
+		proj.render(arg0, arg1, arg2);
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		Nico.update(arg0, arg1, arg2);
+		proj.update(arg0, arg1, arg2);
 	}
 
 	//Souris*****************************************************************************
