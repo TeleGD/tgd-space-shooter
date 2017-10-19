@@ -16,12 +16,15 @@ public class StraightProjectile extends Movable implements Circle{
 	
 	private Player p;
 	
+	private boolean isDestructed;
+	
 	public StraightProjectile(double centerPointX, double centerPointY, double radius,Player player) {
 		x = centerPointX;
 		y = centerPointY;
 		this.radius = radius;
 		speedY = 0.5;
 		p = player;
+		isDestructed = false;
 	}
 	
 	@Override
@@ -31,14 +34,18 @@ public class StraightProjectile extends Movable implements Circle{
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.setColor(Color.red);
-		g.fillOval((float)(x-radius),(float)(y-radius),(float)(2*radius),(float)(2*radius));
-	
+		if (!isDestructed) {
+			g.setColor(Color.red);
+			g.fillOval((float)(x-radius),(float)(y-radius),(float)(2*radius),(float)(2*radius));
+		}
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
+		if (colPlayer()) {
+			isDestructed = true;
+		}
 	}
 	
 	public boolean colPlayer() {
