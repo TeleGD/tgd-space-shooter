@@ -11,6 +11,8 @@ import fr.util.Circle;
 
 public class StraightProjectile extends Movable implements Circle{
 
+	private double radius;
+	
 	public StraightProjectile(double centerPointX, double centerPointY, double radius,Player player) {
 		
 	}
