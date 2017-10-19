@@ -12,7 +12,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	
 	private int radius;
 	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
-	private double newX,newY;
+	private double newX,newY,speedBonus=1;
 
 	public Player(double centerPointX, double centerPointY, int radius) {
 		this.x=centerPointX;
@@ -53,34 +53,50 @@ public class Player extends fr.entities.Movable implements Circle{
 		return radius;
 	}
 	
+	public double getSpeedBonus() {
+		return speedBonus;
+	}
+	
+	public void setSpeedBonus(double newSpeedBonus) {
+		speedBonus=newSpeedBonus;
+	}
+	
+	public void upSpeedBonus() {
+		setSpeedBonus(speedBonus*1.2);
+	}
+	
+	public void downSpeedBonus() {
+		setSpeedBonus(speedBonus/1.2);
+	}
+	
 	private void move() {
 		//Pour determiner les vitesses horizontales et verticales
 		
 		speedY = 0;
 		if ((upPress && !downPress) || (upPress && downPress && hautbas)) {
 			if (y > radius) {
-				speedY = -1;
+				speedY = -speedBonus;
 			}
 
 		}
 		if ((!upPress && downPress) || (upPress && downPress && !hautbas)) {
 			if (y < 720 - radius) {
 
-				speedY = 1;
+				speedY = speedBonus;
 			}
 		}
 		
 		speedX = 0;
 		if ((leftPress && !rightPress) || (leftPress && rightPress && !droitegauche)) {
 			if (x > radius) {
-				speedX = -1;
+				speedX = -speedBonus;
 			}
 
 		}
 		if ((!leftPress && rightPress) || (leftPress && rightPress && droitegauche)) {
 			if (x < 1280 - radius) {
 
-				speedX = 1;
+				speedX = speedBonus;
 			}
 		}
 	}
