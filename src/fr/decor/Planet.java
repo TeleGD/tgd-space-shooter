@@ -36,7 +36,7 @@ public class Planet extends Movable{
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		y+=speedY*delta;
-		if (y>=200) {
+		if (y>=1000) {
 			destructed=true;
 		}
 	}

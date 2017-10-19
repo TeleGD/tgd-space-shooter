@@ -24,11 +24,6 @@ public class Planetgen {
 		for (Planet p : planets) {
 	     	p.update(container, game, delta);
 		}
-		//for (int i = 0;i>planets.size();i++) {
-		//	if (planets.get(i).getDestructed()) {
-		//		planets.remove(i);
-		//	}
-		//}
 		for (Iterator<Planet> it = planets.iterator();it.hasNext();) {
 			if (it.next().getDestructed()) {
 					it.remove();
