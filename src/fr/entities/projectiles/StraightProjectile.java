@@ -42,8 +42,8 @@ public class StraightProjectile extends Movable implements Circle{
 	}
 	
 	public boolean colPlayer() {
-		distance = Math.sqrt( Math.pow(Player.getX() - x , 2) + Math.pow(Player.getY() - y, 2)) 
-		return true;
+		double distance = Math.sqrt( Math.pow(p.getX() - x , 2) + Math.pow(p.getY() - y, 2)) ;
+		return (distance <= p.getRadius() + radius);
 	}
 
 }
