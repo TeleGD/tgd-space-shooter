@@ -15,8 +15,8 @@ public class StraightProjectile extends Movable implements Circle{
 	private double radius;
 	
 	public StraightProjectile(double centerPointX, double centerPointY, double radius,Player player) {
-		x = centerPointX;
-		y = centerPointY;
+		x = 500;
+		y = 500;
 		this.radius = radius;
 		speedY = 5;
 	}
