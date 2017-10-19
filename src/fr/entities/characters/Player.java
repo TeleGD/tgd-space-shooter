@@ -11,7 +11,7 @@ import fr.util.Circle;
 public class Player extends fr.entities.Movable implements Circle{
 	
 	private int radius;
-	private boolean upPress,downPress,leftPress,rightPress;
+	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
 	private double newX,newY;
 
 	public Player(double centerPointX, double centerPointY, int radius) {
@@ -57,34 +57,31 @@ public class Player extends fr.entities.Movable implements Circle{
 		//Pour determiner les vitesses horizontales et verticales
 		
 		speedY = 0;
-		if (upPress && !downPress) {
+		if ((upPress && !downPress) || (upPress && downPress && hautbas)) {
 			if (y > radius) {
 				speedY = -1;
 			}
 
 		}
-		if (!upPress && downPress) {
+		if ((!upPress && downPress) || (upPress && downPress && !hautbas)) {
 			if (y < 720 - radius) {
+
 				speedY = 1;
 			}
 		}
 		
 		speedX = 0;
-		if (leftPress && !rightPress) {
+		if ((leftPress && !rightPress) || (leftPress && rightPress && !droitegauche)) {
 			if (x > radius) {
 				speedX = -1;
 			}
 
 		}
-		if (!leftPress && rightPress) {
+		if ((!leftPress && rightPress) || (leftPress && rightPress && droitegauche)) {
 			if (x < 1280 - radius) {
+
 				speedX = 1;
 			}
-		}
-		
-		if (speedX!=0 && speedY!=0) {
-			speedX/=Math.sqrt(2);
-			speedY/=Math.sqrt(2);
 		}
 	}
 	
@@ -112,17 +109,21 @@ public class Player extends fr.entities.Movable implements Circle{
 		switch (key) {
 		case Input.KEY_UP:
 			upPress = true;
+			hautbas=true;
 			break;
 
 		case Input.KEY_DOWN:
 			downPress = true;
+			hautbas=false;
 			break;
 
 		case Input.KEY_LEFT:
 			leftPress = true;
+			droitegauche = false;
 			break;
 		case Input.KEY_RIGHT:
 			rightPress = true;
+			droitegauche = true;
 			break;
 		}
 	}
