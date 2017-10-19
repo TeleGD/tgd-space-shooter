@@ -14,12 +14,15 @@ public class StraightProjectile extends Movable implements Circle{
 	private double radius;
 	
 	public StraightProjectile(double centerPointX, double centerPointY, double radius,Player player) {
-		
+		x = centerPointX;
+		y = centerPointY;
+		this.radius = radius;
+		speedY = 5;
 	}
 	
 	@Override
 	public int getRadius() {
-		return 0;
+		return (int)radius;
 	}
 
 	@Override
