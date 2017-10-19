@@ -1,5 +1,6 @@
 package fr.entities.projectiles;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -27,6 +28,9 @@ public class StraightProjectile extends Movable implements Circle{
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		g.setColor(Color.red);
+		g.fillOval((float)(x-radius),(float)(y-radius),(float)(2*radius),(float)(2*radius));
+	
 	}
 
 	@Override
