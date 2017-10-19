@@ -39,7 +39,7 @@ public class StraightProjectile extends Movable implements Circle{
 	}
 	
 	public boolean colPlayer() {
-		//Renvoie true si il y a collision avec le vaisseau du joueur
+		distance = Math.sqrt( Math.pow(Player.getX() - x , 2) + Math.pow(Player.getY() - y, 2)) 
 		return true;
 	}
 
