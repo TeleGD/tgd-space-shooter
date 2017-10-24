@@ -10,23 +10,14 @@ import fr.entities.Movable;
 import fr.entities.characters.Player;
 import fr.util.Rectangle;
 
-public class Enemy1 extends Movable implements Rectangle{
+public class Enemy1 extends Enemy{
 	
 	
-	private int height;
-	private int width;
-	private boolean destructed;
-	private Player player;
+	
 
 
 	public Enemy1(double x, double y, Player player) {
-		this.x=x;
-		this.y=y;
-		this.height=30;
-		this.width=30;
-		speedX=0.5;
-		this.destructed=false;
-		this.player=player;
+		super(x, y, player);
 	}
 	
 	
@@ -38,18 +29,11 @@ public class Enemy1 extends Movable implements Rectangle{
 
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		move(delta);
+		moveX(delta);
+		moveY(delta);
 	}
 
 
-	public double getWidth() {
-		return width;
-	}
-
-
-	public double getHight() {
-		return height;
-	}
-	
 	public void move(int delta){
 		if(this.x < 0)
 			speedX = -speedX;

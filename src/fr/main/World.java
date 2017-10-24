@@ -12,26 +12,35 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entities.characters.Player;
+import fr.entities.characters.enemies.Enemy;
+import fr.entities.characters.enemies.Enemy1;
 
 
 public class World extends BasicGameState {
 
 	public static int ID = 0;
 	private static Player Nico;
+	private ArrayList<Enemy> enemies;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		Nico=new Player(100,100,16);
+		enemies=new ArrayList<Enemy>();
+		enemies.add(new Enemy1(100,100,Nico));
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		Nico.render(arg0, arg1, arg2);
+		for(Enemy e:enemies)
+			e.render(arg0, arg1, arg2);
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		Nico.update(arg0, arg1, arg2);
+		for(Enemy e:enemies)
+			e.update(arg0, arg1, arg2);
 	}
 
 	//Souris*****************************************************************************
