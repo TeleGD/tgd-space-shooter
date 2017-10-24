@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entities.characters.Player;
 import fr.entities.characters.enemies.Enemy;
 import fr.entities.characters.enemies.Enemy1;
+import fr.entities.projectiles.Projectile;
 import fr.entities.projectiles.StraightProjectile;
 
 
@@ -23,14 +24,16 @@ public class World extends BasicGameState {
 	public static int ID = 0;
 	private static Player Nico;
 	private ArrayList<Enemy> enemies;
-	private static StraightProjectile proj;
+	private static ArrayList<Projectile> projectiles;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		Nico=new Player(100,100,16);
+		projectiles= new ArrayList<Projectile>();
 		enemies=new ArrayList<Enemy>();
-		enemies.add(new Enemy1(100,100,Nico));
-		proj = new StraightProjectile(200, 200, 5, Nico);
+		enemies.add(new Enemy1(100,100,Nico,projectiles));
+		
+		projectiles.add(new StraightProjectile(200, 200, 5, Nico));
 	}
 
 	@Override
@@ -38,7 +41,10 @@ public class World extends BasicGameState {
 		Nico.render(arg0, arg1, arg2);
 		for(Enemy e:enemies)
 			e.render(arg0, arg1, arg2);
-		proj.render(arg0, arg1, arg2);
+		for(Projectile e:projectiles)
+			e.render(arg0, arg1, arg2);
+		
+		arg2.drawString(""+projectiles.size(), 500, 700);
 	}
 
 	@Override
@@ -46,7 +52,13 @@ public class World extends BasicGameState {
 		Nico.update(arg0, arg1, arg2);
 		for(Enemy e:enemies)
 			e.update(arg0, arg1, arg2);
-		proj.update(arg0, arg1, arg2);
+		for(Projectile p:projectiles)
+			p.update(arg0, arg1, arg2);
+		for (int i=0;i<projectiles.size();i++){
+			if(projectiles.get(i).isDestructed()){
+				projectiles.remove(i);
+			}
+		}
 	}
 
 	//Souris*****************************************************************************

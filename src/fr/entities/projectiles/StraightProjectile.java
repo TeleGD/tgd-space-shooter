@@ -10,32 +10,20 @@ import fr.entities.Movable;
 import fr.entities.characters.Player;
 import fr.util.Circle;
 
-public class StraightProjectile extends Movable implements Circle{
+public class StraightProjectile extends Projectile{
 
-	private double radius;
 	
-	private Player p;
-	
-	private boolean isDestructed;
-	
-	public StraightProjectile(double centerPointX, double centerPointY, double radius,Player player) {
-		x = centerPointX;
-		y = centerPointY;
-		this.radius = radius;
-		speedY = 0.5;
-		p = player;
-		isDestructed = false;
+	public StraightProjectile(double centerPointX, double centerPointY, int radius,Player player) {
+		super(centerPointX,centerPointY,radius,player);
+		speedY = 0.2;
 	}
 	
-	@Override
-	public int getRadius() {
-		return (int)radius;
-	}
+	
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		if (!isDestructed) {
-			g.setColor(Color.red);
+		if (!destructed) {
+			g.setColor(Color.cyan);
 			g.fillOval((float)(x-radius),(float)(y-radius),(float)(2*radius),(float)(2*radius));
 		}
 	}
@@ -43,9 +31,9 @@ public class StraightProjectile extends Movable implements Circle{
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
-		if (colPlayer()) {
-			isDestructed = true;
-		}
+		outOfBounds();
+		if(colPlayer())
+			destructed=true;
 	}
 	
 	public boolean colPlayer() {
