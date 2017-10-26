@@ -25,7 +25,6 @@ public class Enemy2 extends Enemy{
 		this.signeDiffY = (y-startY)/Math.abs(y-startY);
 		this.projectiles=projectiles;
 		compt=0;
-		this.speedY=0.25;
 		this.life=35;
 		this.lifeInit=50;
 	}
@@ -55,7 +54,7 @@ public class Enemy2 extends Enemy{
 		if(isArrived) {
 			if(this.y < 0)
 				speedY = 0.25;
-			if(this.y > 720-width)
+			else if(this.y > 720-width)
 				speedY = -0.25;
 		} else {
 			if(this.y < startY)
@@ -73,6 +72,7 @@ public class Enemy2 extends Enemy{
 				speedY = 0;
 			if((x-startX)/Math.abs(x-startX) == -signeDiffX && (y-startY)/Math.abs(y-startY) == -signeDiffY) {
 				isArrived = true;
+				speedY = 0.25;
 			}
 		}
 	}
