@@ -67,8 +67,11 @@ public class Enemy2 extends Enemy{
 			else if (this.x > startX)
 				speedX = -0.25;
 			
-			if((x-startX)/Math.abs(x-startX) == -signeDiffX && (y-startY)/Math.abs(y-startY) == -signeDiffY) {
+			if((x-startX)/Math.abs(x-startX) == -signeDiffX)
 				speedX = 0;
+			if((y-startY)/Math.abs(y-startY) == -signeDiffY)
+				speedY = 0;
+			if((x-startX)/Math.abs(x-startX) == -signeDiffX && (y-startY)/Math.abs(y-startY) == -signeDiffY) {
 				isArrived = true;
 			}
 		}
