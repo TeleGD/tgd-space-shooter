@@ -29,8 +29,8 @@ public class World extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		Nico=new Player(100,100,8);
 		projectiles= new ArrayList<Projectile>();
+		Nico=new Player(100,100,8,projectiles);
 		enemies=new ArrayList<Enemy>();
 		enemies.add(new Enemy1(100,100,Nico,projectiles));
 		enemies.add(new Enemy2(500,500,100,100,Nico,projectiles));

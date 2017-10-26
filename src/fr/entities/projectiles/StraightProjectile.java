@@ -32,10 +32,12 @@ public class StraightProjectile extends Projectile{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		outOfBounds();
-		if((colPlayer())&&(!allied))
+		if((colPlayer())&&(!allied)){
 			destructed=true;
-		
+			p.loseHP();
+		}
 	}
+	
 	
 	public boolean colPlayer() {
 		double distance = Math.sqrt( Math.pow(p.getX() - x , 2) + Math.pow(p.getY() - y, 2)) ;
