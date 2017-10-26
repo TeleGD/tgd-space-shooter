@@ -33,7 +33,6 @@ public class World extends BasicGameState {
 		enemies=new ArrayList<Enemy>();
 		enemies.add(new Enemy1(100,100,Nico,projectiles));
 		
-		projectiles.add(new StraightProjectile(200, 200, 5, Nico));
 	}
 
 	@Override

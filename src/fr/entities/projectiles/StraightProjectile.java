@@ -13,8 +13,8 @@ import fr.util.Circle;
 public class StraightProjectile extends Projectile{
 
 	
-	public StraightProjectile(double centerPointX, double centerPointY, int radius,Player player) {
-		super(centerPointX,centerPointY,radius,player);
+	public StraightProjectile(double centerPointX, double centerPointY, int radius,Player player,boolean allied) {
+		super(centerPointX,centerPointY,radius,player,allied);
 		speedY = 0.2;
 	}
 	
@@ -32,8 +32,9 @@ public class StraightProjectile extends Projectile{
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
 		outOfBounds();
-		if(colPlayer())
+		if((colPlayer())&&(!allied))
 			destructed=true;
+		
 	}
 	
 	public boolean colPlayer() {

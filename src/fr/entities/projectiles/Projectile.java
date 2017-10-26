@@ -15,15 +15,16 @@ public class Projectile extends Movable implements Circle{
 	
 	protected Player p;
 	
-	protected boolean destructed;
+	protected boolean destructed,allied;
 	
-	public Projectile(double centerPointX, double centerPointY, int radius,Player player) {
+	public Projectile(double centerPointX, double centerPointY, int radius,Player player, boolean allied) {
 		x = centerPointX;
 		y = centerPointY;
 		this.radius = radius;
 		speedY = 0.5;
 		p = player;
 		destructed = false;
+		this.allied=allied;
 	}
 	
 	
