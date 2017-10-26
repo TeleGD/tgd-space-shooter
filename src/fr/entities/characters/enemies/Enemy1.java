@@ -17,8 +17,8 @@ import fr.util.Rectangle;
 public class Enemy1 extends Enemy{
 	
 	
-	ArrayList<Projectile> projectiles;
-	private int compt;
+	
+	
 
 	public Enemy1(double x, double y, Player player, ArrayList<Projectile> projectiles) {
 		super(x, y, player);

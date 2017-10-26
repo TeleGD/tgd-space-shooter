@@ -8,6 +8,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.main.menus.WelcomeMenu;
+
 public class Main extends StateBasedGame {
 
 	
@@ -34,6 +36,8 @@ public class Main extends StateBasedGame {
 		@Override
 		public void initStatesList(GameContainer container) throws SlickException {
 			addState(new World());
+			addState(new WelcomeMenu());
+			this.enterState(WelcomeMenu.ID);
 		}
 
 

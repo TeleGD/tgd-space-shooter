@@ -3,6 +3,7 @@ package fr.entities.characters;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
@@ -14,18 +15,26 @@ public class Player extends fr.entities.Movable implements Circle{
 	private int radius;
 	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
 	private double newX,newY,speedBonus=1;
+	private Image image;
 
 	public Player(double centerPointX, double centerPointY, int radius) {
 		this.x=centerPointX;
 		this.y=centerPointY;
 		this.radius=radius;
+		try {
+			image=new Image("img/planet/En3.png");
+			image=image.getScaledCopy((float) 0.05);
+		} catch (SlickException e) {
+			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		arg2.setColor(Color.blue);
+		arg2.setColor(Color.green);
+		arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
 		arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
-	
 	}
 	
 

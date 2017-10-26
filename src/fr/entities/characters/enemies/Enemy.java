@@ -1,5 +1,7 @@
 package fr.entities.characters.enemies;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.entities.Movable;
 import fr.entities.characters.Player;
+import fr.entities.projectiles.Projectile;
 import fr.util.Rectangle;
 
 public class Enemy extends Movable implements Rectangle{
@@ -17,6 +20,8 @@ public class Enemy extends Movable implements Rectangle{
 	protected boolean destructed;
 	protected Player player;
 	protected int life,lifeInit;
+	protected ArrayList<Projectile> projectiles;
+	protected int compt;
 
 	public Enemy(double x, double y, Player player) {
 		this.x=x;
