@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entities.characters.Player;
 import fr.entities.characters.enemies.Enemy;
 import fr.entities.characters.enemies.Enemy1;
+import fr.entities.characters.enemies.Enemy2;
 import fr.entities.projectiles.Projectile;
 import fr.entities.projectiles.StraightProjectile;
 
@@ -32,6 +33,7 @@ public class World extends BasicGameState {
 		projectiles= new ArrayList<Projectile>();
 		enemies=new ArrayList<Enemy>();
 		enemies.add(new Enemy1(100,100,Nico,projectiles));
+		enemies.add(new Enemy2(500,500,100,100,Nico,projectiles));
 		
 		projectiles.add(new StraightProjectile(200, 200, 5, Nico));
 	}
