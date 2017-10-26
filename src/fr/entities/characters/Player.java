@@ -41,9 +41,8 @@ public class Player extends fr.entities.Movable implements Circle{
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.green);
 		arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
