@@ -1,5 +1,7 @@
 package fr.entities.characters;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,6 +10,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.entities.projectiles.Projectile;
+import fr.entities.projectiles.StraightProjectile;
 import fr.util.Circle;
 
 public class Player extends fr.entities.Movable implements Circle{
@@ -16,11 +20,19 @@ public class Player extends fr.entities.Movable implements Circle{
 	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
 	private double newX,newY,speedBonus=1;
 	private Image image;
-
-	public Player(double centerPointX, double centerPointY, int radius) {
+	private int HP;
+	private ArrayList ProjectileList; 
+	private double compt;
+	private double speedshoot;
+	
+	
+	public Player(double centerPointX, double centerPointY, int radius, ArrayList<Projectile> ProjectileList) {
 		this.x=centerPointX;
 		this.y=centerPointY;
 		this.radius=radius;
+		this.HP = 3;
+		this.ProjectileList = ProjectileList;
+		this.speedshoot = 0.5;
 		try {
 			image=new Image("img/planet/En3.png");
 			image=image.getScaledCopy((float) 0.05);
@@ -29,8 +41,8 @@ public class Player extends fr.entities.Movable implements Circle{
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.green);
 		arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
@@ -44,6 +56,11 @@ public class Player extends fr.entities.Movable implements Circle{
 		y+=speedY*delta;
 		newX=x+speedX;
 		newY=y+speedY;
+		if(compt>50){
+			compt=0;
+			Shoot();
+		}
+		compt=compt + speedshoot;
 	}
 
 
@@ -79,6 +96,19 @@ public class Player extends fr.entities.Movable implements Circle{
 	public void downSpeedBonus() {
 		setSpeedBonus(speedBonus/1.2);
 	}
+	
+	public void loseHP() {
+		HP -= 1;
+		if (HP <= 0) {
+			System.exit(0);
+		}
+	}
+	
+	public void Shoot() {
+		
+		ProjectileList.add(new StraightProjectile(x,y,2,this,true));
+	}
+	
 	
 	private void move() {
 		//Pour determiner les vitesses horizontales et verticales
