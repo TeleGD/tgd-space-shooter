@@ -103,6 +103,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	public void loseHP() {
 		HP -= 1;
 		if (HP <= 0) {
+			System.out.println("you loose");
 			System.exit(0);
 		}
 	}

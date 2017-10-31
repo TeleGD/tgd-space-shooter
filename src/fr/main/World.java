@@ -16,6 +16,7 @@ import fr.entities.characters.Player;
 import fr.entities.characters.enemies.Enemy;
 import fr.entities.characters.enemies.Enemy1;
 import fr.entities.characters.enemies.Enemy2;
+import fr.entities.characters.enemies.generators.Enemy12Gen;
 import fr.entities.projectiles.Projectile;
 import fr.entities.projectiles.StraightProjectile;
 
@@ -26,15 +27,18 @@ public class World extends BasicGameState {
 	private static Player Nico;
 	private ArrayList<Enemy> enemies;
 	private static ArrayList<Projectile> projectiles;
+	private ArrayList<Enemy12Gen> enemieGen;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		projectiles= new ArrayList<Projectile>();
 		Nico=new Player(100,100,8,projectiles);
 		enemies=new ArrayList<Enemy>();
-		enemies.add(new Enemy1(100,100,Nico,projectiles));
+		//enemies.add(new Enemy1(100,100,Nico,projectiles));
 		enemies.add(new Enemy2(100,100,100,400,300,Nico,projectiles));
 		enemies.add(new Enemy2(500,500,70,100,100,Nico,projectiles));
+		enemieGen=new ArrayList<Enemy12Gen>();
+		enemieGen.add(new Enemy12Gen(1300,350,Nico,projectiles,enemies));
 		
 	}
 
@@ -51,6 +55,8 @@ public class World extends BasicGameState {
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+		for(Enemy12Gen e:enemieGen)
+			e.update(arg0, arg1, arg2);
 		Nico.update(arg0, arg1, arg2);
 		for(Enemy e:enemies)
 			e.update(arg0, arg1, arg2);

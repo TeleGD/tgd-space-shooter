@@ -29,7 +29,7 @@ public class Enemy2 extends Enemy{
 		this.signeDiffY = (y-startY)/Math.abs(y-startY);
 		compt=0;
 		this.range=range;
-		this.life=35;
+		this.life=50;
 		this.lifeInit=50;
 	}
 	
