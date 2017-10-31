@@ -47,11 +47,25 @@ public class Projectile extends Movable implements Circle{
 	
 	protected void outOfBounds(){
 		if (this.speedY>0 && this.y>1300)
-			destructed=true;;
+			destructed=true;
+		if(this.speedY<0 && this.y<-20)
+			destructed=true;
 	}
 	
 	public boolean isDestructed(){
 		return destructed;
 	}
-
+	
+	public void setDestructed(boolean destrucetd) {
+		this.destructed=destructed;
+	}
+	
+	public boolean colPlayer() {
+		double distance = Math.sqrt( Math.pow(p.getX() - x , 2) + Math.pow(p.getY() - y, 2)) ;
+		return (distance <= p.getRadius() + radius);
+	}
+	
+	public boolean isAllied() {
+		return allied;
+	}
 }

@@ -47,6 +47,9 @@ public class Player extends fr.entities.Movable implements Circle{
 		arg2.setColor(Color.green);
 		arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
 		arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
+		for (int i=0;i<HP;i++) {
+			arg2.drawImage(image, (float)(i*(10+image.getWidth())), 10);
+		}
 	}
 	
 
@@ -56,7 +59,7 @@ public class Player extends fr.entities.Movable implements Circle{
 		y+=speedY*delta;
 		newX=x+speedX;
 		newY=y+speedY;
-		if(compt>50){
+		if(compt>5){
 			compt=0;
 			Shoot();
 		}
@@ -106,7 +109,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	
 	public void Shoot() {
 		
-		ProjectileList.add(new StraightProjectile(x,y,2,this,true));
+		ProjectileList.add(new StraightProjectile(x,y,2,this,true,0,-0.5));
 	}
 	
 	

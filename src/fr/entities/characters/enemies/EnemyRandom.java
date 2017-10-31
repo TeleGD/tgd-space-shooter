@@ -28,13 +28,12 @@ public class EnemyRandom extends Enemy{
 	private double va; //vitesse angulaire fixée
 	
 	public EnemyRandom(double x, double y, Player player, ArrayList<Projectile> projectiles, double xbox, double ybox, double widthbox, double heightbox) {
-		super(x, y, player);
+		super(x, y, player,projectiles);
 		this.angle=0;
 		this.speed=0.25;
 		this.oldAngularSpeed=0;
 		this.angularSpeed=0;
 		this.va=0.005;
-		this.projectiles=projectiles;
 		compt=0;
 		this.life=35;
 		this.lifeInit=50;
@@ -53,13 +52,13 @@ public class EnemyRandom extends Enemy{
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		if(compt>50){
 			compt=0;
-			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player));
+			//projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player));
 		}
 		compt++;
 		move(delta);
 		moveX(delta);
 		moveY(delta);
-		
+		colProj();
 	}
 	
 	public void move(int delta) {

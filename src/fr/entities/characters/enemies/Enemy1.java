@@ -21,8 +21,8 @@ public class Enemy1 extends Enemy{
 	
 
 	public Enemy1(double x, double y, Player player, ArrayList<Projectile> projectiles) {
-		super(x, y, player);
-		this.projectiles=projectiles;
+		super(x, y, player,projectiles);
+		
 		compt=0;
 		this.speedX=0.25;
 		this.life=35;
@@ -40,12 +40,13 @@ public class Enemy1 extends Enemy{
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		if(compt>50){
 			compt=0;
-			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false));
+			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,0,0.2));
 		}
 		compt++;
 		move(delta);
 		moveX(delta);
 		moveY(delta);
+		colProj();
 	}
 
 

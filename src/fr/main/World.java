@@ -33,7 +33,8 @@ public class World extends BasicGameState {
 		Nico=new Player(100,100,8,projectiles);
 		enemies=new ArrayList<Enemy>();
 		enemies.add(new Enemy1(100,100,Nico,projectiles));
-		enemies.add(new Enemy2(500,500,100,100,Nico,projectiles));
+		enemies.add(new Enemy2(100,100,100,400,300,Nico,projectiles));
+		enemies.add(new Enemy2(500,500,70,100,100,Nico,projectiles));
 		
 	}
 
@@ -58,6 +59,11 @@ public class World extends BasicGameState {
 		for (int i=0;i<projectiles.size();i++){
 			if(projectiles.get(i).isDestructed()){
 				projectiles.remove(i);
+			}
+		}
+		for (int i=0;i<enemies.size();i++){
+			if(enemies.get(i).isDestructed()){
+				enemies.remove(i);
 			}
 		}
 	}
