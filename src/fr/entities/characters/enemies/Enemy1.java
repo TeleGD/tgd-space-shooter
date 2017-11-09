@@ -25,8 +25,8 @@ public class Enemy1 extends Enemy{
 		super(x, y, player,projectiles);
 		compt=0;
 		this.speedX=0.25;
-		this.life=50;
-		this.lifeInit=50;
+		this.life=10;
+		this.lifeInit=10;
 		this.startX = startX;
 		this.startY = startY;
 		this.dirX = 'n';
