@@ -19,7 +19,7 @@ import fr.entities.characters.enemies.Enemy2;
 import fr.entities.characters.enemies.generators.Enemy12Gen;
 import fr.entities.projectiles.Projectile;
 import fr.entities.projectiles.StraightProjectile;
-
+import fr.entities.bonus.Bonus;
 
 public class World extends BasicGameState {
 
@@ -28,6 +28,8 @@ public class World extends BasicGameState {
 	private ArrayList<Enemy> enemies;
 	private static ArrayList<Projectile> projectiles;
 	private ArrayList<Enemy12Gen> enemieGen;
+	private ArrayList<Bonus> bonus;
+	private int nombre_bonus;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -39,6 +41,8 @@ public class World extends BasicGameState {
 		enemies.add(new Enemy2(500,500,70,100,100,Nico,projectiles));
 		enemieGen=new ArrayList<Enemy12Gen>();
 		enemieGen.add(new Enemy12Gen(1300,350,Nico,projectiles,enemies));
+		bonus=new ArrayList<Bonus>();
+		nombre_bonus=3;
 		
 	}
 
@@ -47,9 +51,10 @@ public class World extends BasicGameState {
 		Nico.render(arg0, arg1, arg2);
 		for(Enemy e:enemies)
 			e.render(arg0, arg1, arg2);
-		for(Projectile e:projectiles)
-			e.render(arg0, arg1, arg2);
-		
+		for(Projectile p:projectiles)
+			p.render(arg0, arg1, arg2);
+		for(Bonus b:bonus)
+			b.render(arg0,arg1,arg2);
 		arg2.drawString(""+projectiles.size(), 500, 700);
 	}
 
@@ -67,8 +72,18 @@ public class World extends BasicGameState {
 				projectiles.remove(i);
 			}
 		}
+		for(Bonus b:bonus)
+			b.update(arg0, arg1, arg2);
+		for (int i=0;i<bonus.size();i++){
+			if(bonus.get(i).isDestructed()){
+				bonus.remove(i);
+			}
+		}
 		for (int i=0;i<enemies.size();i++){
 			if(enemies.get(i).isDestructed()){
+				if (Math.random() <= 1) {
+					bonus.add(new Bonus(enemies.get(i).getX()+(enemies.get(i).getWidth()/2),enemies.get(i).getY()+(enemies.get(i).getHight()/2),10,Nico,(int)(nombre_bonus*Math.random()+1)));
+				}
 				enemies.remove(i);
 			}
 		}
