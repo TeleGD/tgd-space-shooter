@@ -22,6 +22,7 @@ public class Enemy extends Movable implements Rectangle{
 	protected int life,lifeInit;
 	protected ArrayList<Projectile> projectiles;
 	protected int compt;
+	protected int score;
 
 	public Enemy(double x, double y, Player player,ArrayList<Projectile> projectiles) {
 		this.x=x;
@@ -68,6 +69,10 @@ public class Enemy extends Movable implements Rectangle{
 	
 	public boolean isDestructed() {
 		return destructed;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 
 	protected void colProj() {

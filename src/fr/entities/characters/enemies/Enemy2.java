@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -17,9 +18,10 @@ public class Enemy2 extends Enemy{
 	private boolean isArrived = false;
 	private double startX, startY, signeDiffX, signeDiffY,range;
 	/*
-	 * StartY,StartX sont les cooredonnées du point autour duquel le mouvement est effectué
+	 * StartY,StartX sont les cooredonnï¿½es du point autour duquel le mouvement est effectuï¿½
 	 * range est la distance max entre le point (startX,startY) et l'ennemi
 	 */
+	private Image image;
 	
 	public Enemy2(double x, double y,double range, double startX, double startY, Player player, ArrayList<Projectile> projectiles) {
 		super(x, y, player,projectiles);
@@ -31,11 +33,21 @@ public class Enemy2 extends Enemy{
 		this.range=range;
 		this.life=50;
 		this.lifeInit=50;
+		this.width=45;
+		this.height=65;
+		try {
+			image=new Image("img/ship/enemy2.png");
+			image=image.getScaledCopy((float) 0.5);
+		} catch (SlickException e) {
+			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
+			e.printStackTrace();
+		}
 	}
 	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.red);
 		arg2.fillRect((float)x, (float)y, (float)width, (float)height);
+		arg2.drawImage(image, (float)(x+width/2-image.getWidth()/2), (float)(y+height/2-image.getHeight()/2));
 		showLife(arg2);
 	}
 	

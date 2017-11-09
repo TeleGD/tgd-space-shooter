@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -17,6 +18,7 @@ public class Enemy1 extends Enemy{
 	private double startX, startY; //Coordonnees autour desquels le mouvement s'effectue
 	private char dirX,dirY; 
 	private double range; //range du deplacement
+	private Image image;
 	
 
 	public Enemy1(double x, double y,double range,double startX,double startY, Player player, ArrayList<Projectile> projectiles) {
@@ -30,12 +32,22 @@ public class Enemy1 extends Enemy{
 		this.dirX = 'n';
 		this.dirY = 'n';
 		this.range=range;
+		this.width=50;
+		this.height=60;
+		try {
+			image=new Image("img/ship/enemy1.png");
+			image=image.getScaledCopy((float) 1);
+		} catch (SlickException e) {
+			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.red);
 		arg2.fillRect((float)x, (float)y, (float)width, (float)height);
+		arg2.drawImage(image, (float)(x+width/2-image.getWidth()/2), (float)(y+height/2-image.getHeight()/2));
 		showLife(arg2);
 	}
 	
@@ -56,6 +68,7 @@ public class Enemy1 extends Enemy{
 		
 		moveX(delta);
 		moveY(delta);
+		colProj();
 	}
 
 
@@ -67,17 +80,17 @@ public class Enemy1 extends Enemy{
 	}
 	
 	public void whereToGo(double speed, double depart,double position, char dir,char axe) {
-		if (position < depart ) {   //On est à gauche de l'objectif, il faut aller vers la droite
+		if (position < depart ) {   //On est ï¿½ gauche de l'objectif, il faut aller vers la droite
 			speed = 0.25;
-			if (dir == 'g') {  // Si on devait aller à gauche, c'est qu'on vient de dépasser notre objectif
-				dir = 'a';  //on est arrivé
-				speed = 0; // on arrête de bouger dans cette direction
+			if (dir == 'g') {  // Si on devait aller ï¿½ gauche, c'est qu'on vient de dï¿½passer notre objectif
+				dir = 'a';  //on est arrivï¿½
+				speed = 0; // on arrï¿½te de bouger dans cette direction
 			}
 			else
 				dir = 'd';
 			
 		}
-		else {                   // Sinon on est à droite et on doit aller à gauche
+		else {                   // Sinon on est ï¿½ droite et on doit aller ï¿½ gauche
 			speed = -0.25;	
 			if (dir == 'd') {
 				dir = 'a';
