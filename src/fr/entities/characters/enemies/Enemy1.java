@@ -19,7 +19,7 @@ public class Enemy1 extends Enemy{
 	private double range; //range du deplacement
 	
 
-	public Enemy1(double x, double y,double range,double departX,double startX, Player player, ArrayList<Projectile> projectiles) {
+	public Enemy1(double x, double y,double range,double startX,double startY, Player player, ArrayList<Projectile> projectiles) {
 		super(x, y, player,projectiles);
 		compt=0;
 		this.speedX=0.25;
