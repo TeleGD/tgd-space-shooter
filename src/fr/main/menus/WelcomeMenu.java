@@ -41,11 +41,12 @@ public class WelcomeMenu extends BasicGameState {
 		return ID;
 	}
 	
+	
 	public void keyPressed(int key, char c) {
 		if (key == Input.KEY_ESCAPE) {
 			System.exit(0);
 		}else if (key == Input.KEY_ENTER) {
-			game.enterState(World.ID, new FadeOutTransition(),new FadeInTransition());
+			game.enterState(MenuPrincipal.ID, new FadeOutTransition(),new FadeInTransition());
 		}
 	}
 
