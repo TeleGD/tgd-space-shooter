@@ -8,6 +8,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.main.menus.WelcomeMenu;
+
 public class Main extends StateBasedGame {
 
 	
@@ -17,7 +19,7 @@ public class Main extends StateBasedGame {
 		AppGameContainer app = new AppGameContainer(new Main(),1280,720,false);
 		app.setTargetFrameRate(60);
 		app.setVSync(true);
-		app.setShowFPS(false);
+		app.setShowFPS(true);
 		app.start();
 	}
 
@@ -26,7 +28,7 @@ public class Main extends StateBasedGame {
 
 
 	public Main() {
-		super("Bonjour à tous et à toutes");
+		super("Bonjour Ã  tous et Ã  toutes");
 		}
 
 
@@ -34,6 +36,8 @@ public class Main extends StateBasedGame {
 		@Override
 		public void initStatesList(GameContainer container) throws SlickException {
 			addState(new World());
+			addState(new WelcomeMenu());
+			this.enterState(WelcomeMenu.ID);
 		}
 
 

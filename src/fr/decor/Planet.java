@@ -10,14 +10,15 @@ import fr.entities.Movable;
 
 public class Planet extends Movable{
 	
+	private double x,y,speedY;
 	private Image image;
-	
-	speedY=0.5;
-	
+	private Boolean destructed;
 	
 	public Planet(double x,double y)
 	{
+		this.destructed=false;
 		this.x=x;
+		speedY=0.5;
 		this.y=y;
 		try {
 			image=new Image("img/planet/planet12.png");
@@ -34,5 +35,13 @@ public class Planet extends Movable{
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		y+=speedY*delta;
+		if (y>=1000) {
+			destructed=true;
+		}
+	}
+	
+	public Boolean getDestructed() {
+		return destructed;
 	}
 }
