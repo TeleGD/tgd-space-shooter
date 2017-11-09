@@ -66,7 +66,21 @@ public class Player extends fr.entities.Movable implements Circle{
 		compt=compt + speedshoot;
 	}
 
-
+	public void setBonus(int bonus) {
+		switch (bonus)
+		{
+		  case 1:
+		    System.out.println("Bonus 1");
+		    break;
+		  case 2:
+			System.out.println("Bonus 2");
+		    break;
+		  case 3:
+			System.out.println("Bonus 3");
+		    break;
+		}
+	}
+	
 	@Override
 	public double getX() {
 		return x;

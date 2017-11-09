@@ -20,15 +20,15 @@ public class Bonus extends fr.entities.Movable implements Circle {
 	private boolean destructed;
 	private int type;
 	
-	public Bonus(double x, double y, int radius, Player player, int type) {
+	public Bonus(double x, double y, int radius, Player player, int numeroBonus) {
 		this.x=x;
 		this.y=y;
 		this.radius=radius;
 		this.speedX=0;
-		this.speedY=-0.2;
+		this.speedY=0.2;
 		this.destructed=false;
 		p = player;
-		this.type=type;
+		this.type=numeroBonus;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class Bonus extends fr.entities.Movable implements Circle {
 		}
 		if (isPicked()) {
 			this.destructed = true;
-			// Player gagne un bonus
+			p.setBonus(this.type);
 		}
 	}
 	
