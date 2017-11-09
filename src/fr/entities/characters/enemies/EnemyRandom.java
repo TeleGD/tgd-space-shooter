@@ -48,6 +48,7 @@ public class EnemyRandom extends Enemy{
 		this.widthbox=widthbox;
 		this.heightbox=heightbox;
 		this.outOfBox=false;
+		this.score=40;
 		this.i=0;
 		try {
 			image=new Image("img/ship/enemy4.png");

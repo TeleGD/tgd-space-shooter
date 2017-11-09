@@ -35,6 +35,7 @@ public class Enemy2 extends Enemy{
 		this.lifeInit=10;
 		this.width=45;
 		this.height=65;
+		this.score=10;
 		try {
 			image=new Image("img/ship/enemy2.png");
 			image=image.getScaledCopy((float) 0.5);

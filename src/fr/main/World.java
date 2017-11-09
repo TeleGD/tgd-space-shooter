@@ -30,6 +30,7 @@ public class World extends BasicGameState {
 	private ArrayList<Enemy12Gen> enemieGen;
 	private ArrayList<Bonus> bonus;
 	private int nombre_bonus;
+	private int score;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -43,6 +44,7 @@ public class World extends BasicGameState {
 		enemieGen.add(new Enemy12Gen(1300,350,Nico,projectiles,enemies));
 		bonus=new ArrayList<Bonus>();
 		nombre_bonus=3;
+		score=0;
 		
 	}
 
@@ -56,6 +58,7 @@ public class World extends BasicGameState {
 		for(Projectile p:projectiles)
 			p.render(arg0, arg1, arg2);
 		arg2.drawString(""+projectiles.size(), 500, 700);
+		arg2.drawString("score : "+score, 1100, 15);
 	}
 
 	@Override
@@ -84,6 +87,7 @@ public class World extends BasicGameState {
 				if (Math.random() <= 0.2) {
 					bonus.add(new Bonus(enemies.get(i).getX()+(enemies.get(i).getWidth()/2),enemies.get(i).getY()+(enemies.get(i).getHight()/2),10,Nico,(int)(nombre_bonus*Math.random()+1)));
 				}
+				score+=enemies.get(i).getScore();
 				enemies.remove(i);
 			}
 		}
