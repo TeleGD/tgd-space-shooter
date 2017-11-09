@@ -12,9 +12,9 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import fr.main.World;
 
-public class WelcomeMenu extends BasicGameState {
 
-	public static int ID = 1;
+public class MenuPrincipal extends BasicGameState {
+	public static int ID = 2; int choix = 0;
 	protected static StateBasedGame game;
 	protected GameContainer container;
 	
@@ -27,9 +27,7 @@ public class WelcomeMenu extends BasicGameState {
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		arg2.setColor(Color.white);
-		arg2.drawString("PRESS ENTER PLEASE", 550, 350);
-		arg2.drawRect(525, 330, 205, 50);
+		afficheMenus(arg2);
 	}
 
 	@Override
@@ -41,13 +39,36 @@ public class WelcomeMenu extends BasicGameState {
 		return ID;
 	}
 	
+	public void afficheMenus(Graphics arg2) {
+		String[] menus = {"JOUER","HIGH SCORE","CREDITS","QUITTER"};
+		
+		for (int i = 0; i < menus.length; i++) {
+			if (i == choix) {arg2.setColor(Color.green);}
+			else {arg2.setColor(Color.white);}
+			arg2.drawString(menus[i], 600, 50 + i*155);
+			arg2.drawRect(525, 45+i*155, 205, 50);
+		}
+	}
 	
 	public void keyPressed(int key, char c) {
 		if (key == Input.KEY_ESCAPE) {
 			System.exit(0);
-		}else if (key == Input.KEY_ENTER) {
-			game.enterState(MenuPrincipal.ID, new FadeOutTransition(),new FadeInTransition());
+		}
+		else if (key == Input.KEY_DOWN){
+			choix = Math.min(choix +1, 3) ;
+		}
+		else if (key == Input.KEY_UP){
+			choix = Math.max(choix -1, 0) ;
+		}
+		else if (key == Input.KEY_ENTER) {
+			switch (choix) {
+			case 0 : game.enterState(World.ID, new FadeOutTransition(),new FadeInTransition());
+			break;
+			case 3 : System.exit(0);
+			break;
+			}
 		}
 	}
 
 }
+
