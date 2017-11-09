@@ -28,6 +28,8 @@ public class EnemyRandom extends Enemy{
 	private double alea;
 	private double va; //vitesse angulaire fixée
 	private Image image;
+	private boolean outOfBox;
+	private int i;
 	
 	public EnemyRandom(double x, double y, Player player, ArrayList<Projectile> projectiles, double xbox, double ybox, double widthbox, double heightbox) {
 		super(x, y, player,projectiles);
@@ -45,6 +47,8 @@ public class EnemyRandom extends Enemy{
 		this.ybox=ybox;
 		this.widthbox=widthbox;
 		this.heightbox=heightbox;
+		this.outOfBox=false;
+		this.i=0;
 		try {
 			image=new Image("img/ship/enemy4.png");
 			image=image.getScaledCopy((float) 0.5);
@@ -80,23 +84,29 @@ public class EnemyRandom extends Enemy{
 		alea=Math.random();
 		angularSpeed=oldAngularSpeed;
 		
-		if (x>=xbox && x<=xbox+widthbox && y>=ybox && y<=ybox+heightbox ) {
-			if (oldAngularSpeed==0) {
-				if (alea<0.1) angularSpeed=va;
-				if (alea>0.9) angularSpeed=-va;
-			}
-			if (oldAngularSpeed==va) {
-				if (alea<0.02) angularSpeed=0;
-				if (alea>0.98) angularSpeed=-va;
-			}
-			if (oldAngularSpeed==-va) {
-				if (alea<0.02) angularSpeed=0;
-				if (alea>0.98) angularSpeed=va;
-			}
+		if (outOfBox) {
+			i+=1;
+			if (i>=40) {outOfBox=false;i=0;};
 		} else {
-			angularSpeed=va;
+			if (x>=xbox && x<=xbox+widthbox && y>=ybox && y<=ybox+heightbox ) {
+				if (oldAngularSpeed==0) {
+					if (alea<0.1) angularSpeed=va;
+					if (alea>0.9) angularSpeed=-va;
+				}
+				if (oldAngularSpeed==va) {
+					if (alea<0.03) angularSpeed=0;
+					if (alea>0.98) angularSpeed=-va;
+				}
+				if (oldAngularSpeed==-va) {
+					if (alea<0.03) angularSpeed=0;
+					if (alea>0.98) angularSpeed=va;
+				}
+			} else {
+				outOfBox=true;
+				angularSpeed=va;
+				if (alea<0.5) angularSpeed=-va;
+			}
 		}
-		
 		oldAngularSpeed=angularSpeed;
 		angle+=angularSpeed*delta;
 		speedX = this.speed*Math.cos(angle);
