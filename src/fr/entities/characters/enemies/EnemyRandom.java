@@ -37,8 +37,8 @@ public class EnemyRandom extends Enemy{
 		this.angularSpeed=0;
 		this.va=0.005;
 		compt=0;
-		this.life=35;
-		this.lifeInit=50;
+		this.life=10;
+		this.lifeInit=10;
 		this.width=60;
 		this.height=60;
 		this.xbox=xbox;
