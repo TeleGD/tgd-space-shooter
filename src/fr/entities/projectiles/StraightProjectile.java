@@ -13,9 +13,10 @@ import fr.util.Circle;
 public class StraightProjectile extends Projectile{
 
 	
-	public StraightProjectile(double centerPointX, double centerPointY, int radius,Player player,boolean allied) {
+	public StraightProjectile(double centerPointX, double centerPointY, int radius,Player player,boolean allied,double speedX,double speedY) {
 		super(centerPointX,centerPointY,radius,player,allied);
-		speedY = 0.2;
+		this.speedY = speedY;
+		this.speedX = speedX;
 	}
 	
 	
@@ -39,9 +40,6 @@ public class StraightProjectile extends Projectile{
 	}
 	
 	
-	public boolean colPlayer() {
-		double distance = Math.sqrt( Math.pow(p.getX() - x , 2) + Math.pow(p.getY() - y, 2)) ;
-		return (distance <= p.getRadius() + radius);
-	}
+	
 
 }
