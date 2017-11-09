@@ -56,7 +56,7 @@ public class Projectile extends Movable implements Circle{
 		return destructed;
 	}
 	
-	public void setDestructed(boolean destrucetd) {
+	public void setDestructed(boolean destructed) {
 		this.destructed=destructed;
 	}
 	
