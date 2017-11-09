@@ -53,7 +53,7 @@ public class EnemyRandom extends Enemy{
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		if(compt>50){
 			compt=0;
-			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player));
+			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false));
 		}
 		compt++;
 		move(delta);
