@@ -18,7 +18,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	
 	private int radius;
 	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
-	private double newX,newY,speedBonus=1;
+	private double newX,newY,speedBonus=0.3;
 	private Image image;
 	private int HP;
 	private ArrayList ProjectileList; 
