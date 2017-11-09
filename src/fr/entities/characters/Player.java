@@ -34,7 +34,7 @@ public class Player extends fr.entities.Movable implements Circle{
 		this.ProjectileList = ProjectileList;
 		this.speedshoot = 0.5;
 		try {
-			image=new Image("img/planet/En3.png");
+			image=new Image("img/ship/En3.png");
 			image=image.getScaledCopy((float) 0.05);
 		} catch (SlickException e) {
 			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
