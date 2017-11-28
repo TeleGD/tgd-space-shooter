@@ -35,7 +35,7 @@ public class Enemy2 extends Enemy{
 		this.lifeInit=10;
 		this.width=45;
 		this.height=65;
-		this.score=10;
+		this.score=20;
 		try {
 			image=new Image("img/ship/enemy2.png");
 			image=image.getScaledCopy((float) 0.5);
@@ -47,7 +47,7 @@ public class Enemy2 extends Enemy{
 	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.red);
-		arg2.fillRect((float)x, (float)y, (float)width, (float)height);
+		//arg2.fillRect((float)x, (float)y, (float)width, (float)height);
 		arg2.drawImage(image, (float)(x+width/2-image.getWidth()/2), (float)(y+height/2-image.getHeight()/2));
 		showLife(arg2);
 	}

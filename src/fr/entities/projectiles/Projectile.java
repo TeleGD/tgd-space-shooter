@@ -27,8 +27,6 @@ public class Projectile extends Movable implements Circle{
 		this.allied=allied;
 	}
 	
-	
-	
 	@Override
 	public int getRadius() {
 		return radius;

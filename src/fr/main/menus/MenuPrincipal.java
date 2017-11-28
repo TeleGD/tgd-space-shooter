@@ -14,15 +14,16 @@ import fr.main.World;
 
 
 public class MenuPrincipal extends BasicGameState {
-	public static int ID = 2; int choix = 0;
+	public static int ID = 2;
+	int choix = 0;
 	protected static StateBasedGame game;
 	protected GameContainer container;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.container = arg0;
-		this.game = arg1;
 		container.setShowFPS(false);
+		game=arg1;
 	}
 
 	@Override
@@ -62,7 +63,9 @@ public class MenuPrincipal extends BasicGameState {
 		}
 		else if (key == Input.KEY_ENTER) {
 			switch (choix) {
-			case 0 : game.enterState(World.ID, new FadeOutTransition(),new FadeInTransition());
+			case 0 : 
+				World.reset();
+				game.enterState(World.ID, new FadeOutTransition(),new FadeInTransition());
 			break;
 			case 3 : System.exit(0);
 			break;

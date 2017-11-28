@@ -18,10 +18,10 @@ public class Player extends fr.entities.Movable implements Circle{
 	
 	private int radius;
 	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
-	private double newX,newY,speedBonus=0.3;
+	private double speedBonus=0.3;
 	private Image image;
 	private int HP;
-	private ArrayList ProjectileList; 
+	private ArrayList<Projectile> ProjectileList; 
 	private double compt;
 	private double speedshoot;
 	
@@ -30,7 +30,7 @@ public class Player extends fr.entities.Movable implements Circle{
 		this.x=centerPointX;
 		this.y=centerPointY;
 		this.radius=radius;
-		this.HP = 3;
+		this.HP = 10;
 		this.ProjectileList = ProjectileList;
 		this.speedshoot = 0.5;
 		try {
@@ -46,7 +46,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.green);
 		arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
-		arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
+		//arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
 		for (int i=0;i<HP;i++) {
 			arg2.drawImage(image, (float)(i*(10+image.getWidth())), 10);
 		}
@@ -57,8 +57,6 @@ public class Player extends fr.entities.Movable implements Circle{
 		move();
 		x+=speedX*delta;
 		y+=speedY*delta;
-		newX=x+speedX;
-		newY=y+speedY;
 		if(compt>5){
 			compt=0;
 			Shoot();
@@ -114,12 +112,18 @@ public class Player extends fr.entities.Movable implements Circle{
 		setSpeedBonus(speedBonus/1.2);
 	}
 	
+	public int getHP() {
+		return HP;
+	}
+	
 	public void loseHP() {
 		HP -= 1;
-		if (HP <= 0) {
+		/*if (HP <= 0) {
 			System.out.println("you loose");
+			
 			System.exit(0);
-		}
+			
+		}*/
 	}
 	
 	public void Shoot() {
@@ -201,5 +205,14 @@ public class Player extends fr.entities.Movable implements Circle{
 			droitegauche = true;
 			break;
 		}
+	}
+	
+	public void reset(double centerPointX, double centerPointY, int radius, ArrayList<Projectile> ProjectileList) {
+		this.HP=5;
+		this.x=centerPointX;
+		this.y=centerPointY;
+		this.radius=radius;
+		this.ProjectileList = ProjectileList;
+		this.speedshoot = 0.5;
 	}
 }

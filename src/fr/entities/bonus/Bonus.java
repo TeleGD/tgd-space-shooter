@@ -1,16 +1,12 @@
 package fr.entities.bonus;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.entities.Movable;
 import fr.entities.characters.Player;
-import fr.entities.projectiles.Projectile;
 import fr.util.Circle;
 
 public class Bonus extends fr.entities.Movable implements Circle {

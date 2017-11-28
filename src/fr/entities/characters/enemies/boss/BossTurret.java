@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -17,10 +18,12 @@ public class BossTurret extends Enemy {
 	
 	double nextProjY;
 	double projY;
+	private Image img;
+	private float bossX,bossY;
 	
 	Enemy parent;
 	
-	public BossTurret(double x, double y, Player player,ArrayList<Projectile> projectiles,double speedX,double speedY, Enemy parent){
+	public BossTurret(double x, double y, Player player,ArrayList<Projectile> projectiles,double speedX,double speedY, Enemy parent, Image img){
 		super(x,y,player,projectiles);
 		this.width = 20;
 		this.height = 20;
@@ -29,8 +32,7 @@ public class BossTurret extends Enemy {
 		
 		this.nextProjY = 0.1;
 		this.projY = 0;
-		
-		
+		this.img=img;
 		this.parent = parent;
 		
 	}
@@ -38,8 +40,9 @@ public class BossTurret extends Enemy {
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		if(!this.isDestructed()){
 			arg2.setColor(Color.pink);
-			arg2.fillRect((float)x, (float)y, (float)width, (float)height);
+			//arg2.fillRect((float)x, (float)y, (float)width, (float)height);
 			showLife(arg2);
+			arg2.drawImage(img, bossX-25, bossY-50);
 		}
 		
 	}
@@ -68,5 +71,11 @@ public class BossTurret extends Enemy {
 		moveX(delta);
 		moveY(delta);
 	}
-
+	
+	
+	
+	public void setBossPos(float x,float y) {
+		this.bossX=x;
+		this.bossY=y;
+	}
 }

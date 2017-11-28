@@ -10,8 +10,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import fr.main.World;
-
 public class WelcomeMenu extends BasicGameState {
 
 	public static int ID = 1;
@@ -21,8 +19,8 @@ public class WelcomeMenu extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.container = arg0;
-		this.game = arg1;
 		container.setShowFPS(false);
+		game=arg1;
 	}
 
 	@Override

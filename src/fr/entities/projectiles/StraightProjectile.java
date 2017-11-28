@@ -6,9 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.entities.Movable;
 import fr.entities.characters.Player;
-import fr.util.Circle;
 
 public class StraightProjectile extends Projectile{
 
@@ -32,6 +30,7 @@ public class StraightProjectile extends Projectile{
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		moveY(delta);
+		moveX(delta);
 		outOfBounds();
 		if((colPlayer())&&(!allied)){
 			destructed=true;
