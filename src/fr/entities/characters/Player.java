@@ -20,10 +20,12 @@ public class Player extends fr.entities.Movable implements Circle{
 	private boolean upPress,downPress,leftPress,rightPress,hautbas,droitegauche;
 	private double speedBonus=0.3;
 	private Image image;
+	private Image imageInvul;
 	private int HP;
 	private ArrayList<Projectile> ProjectileList; 
 	private double compt;
 	private double speedshoot;
+	private int invulnerability;
 	
 	
 	public Player(double centerPointX, double centerPointY, int radius, ArrayList<Projectile> ProjectileList) {
@@ -33,9 +35,17 @@ public class Player extends fr.entities.Movable implements Circle{
 		this.HP = 10;
 		this.ProjectileList = ProjectileList;
 		this.speedshoot = 0.5;
+		this.invulnerability = 0;
 		try {
 			image=new Image("img/ship/En3.png");
 			image=image.getScaledCopy((float) 0.05);
+		} catch (SlickException e) {
+			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
+			e.printStackTrace();
+		}
+		try {
+			imageInvul = new Image("img/ship/En3Invulnerable.png");
+			imageInvul=imageInvul.getScaledCopy((float) 0.05);
 		} catch (SlickException e) {
 			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
 			e.printStackTrace();
@@ -45,7 +55,11 @@ public class Player extends fr.entities.Movable implements Circle{
 
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.green);
-		arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
+		if ( ((invulnerability/10) & 1) == 0){
+			arg2.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
+		} else {
+			arg2.drawImage(imageInvul, (float)(x-imageInvul.getWidth()/2), (float)(y-imageInvul.getHeight()/2));
+		}
 		//arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
 		for (int i=0;i<HP;i++) {
 			arg2.drawImage(image, (float)(i*(10+image.getWidth())), 10);
@@ -62,6 +76,9 @@ public class Player extends fr.entities.Movable implements Circle{
 			Shoot();
 		}
 		compt=compt + speedshoot;
+		if (invulnerability>0){
+			invulnerability-=1;
+		}
 	}
 
 	public void setBonus(int bonus) {
@@ -117,7 +134,11 @@ public class Player extends fr.entities.Movable implements Circle{
 	}
 	
 	public void loseHP() {
-		HP -= 1;
+		if (invulnerability==0){
+			HP -= 1;
+			invulnerability = 90;
+		}
+		
 		/*if (HP <= 0) {
 			System.out.println("you loose");
 			
@@ -214,5 +235,6 @@ public class Player extends fr.entities.Movable implements Circle{
 		this.radius=radius;
 		this.ProjectileList = ProjectileList;
 		this.speedshoot = 0.5;
+		this.invulnerability = 0;
 	}
 }
