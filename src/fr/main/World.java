@@ -34,7 +34,7 @@ public class World extends BasicGameState {
 	private static ArrayList<Bonus> bonus;
 	private int nombre_bonus;
 	private static int score;
-	private static int compt;//compteur qui nous permet de gérer les événements dans le temps
+	private static int compt;//compteur qui nous permet de gï¿½rer les ï¿½vï¿½nements dans le temps
 	private Image bossBody,bossTowerL,bossTowerR;
 	private static Decor decor;
 	private static String name;
@@ -100,40 +100,42 @@ public class World extends BasicGameState {
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		compt++;
-		for(Enemy12Gen e:enemieGen)
-			e.update(arg0, arg1, arg2);
-		Nico.update(arg0, arg1, arg2);
-		for(Enemy e:enemies)
-			e.update(arg0, arg1, arg2);
-		for(Projectile p:projectiles)
-			p.update(arg0, arg1, arg2);
-		for (int i=0;i<projectiles.size();i++){
-			if(projectiles.get(i).isDestructed()){
-				projectiles.remove(i);
-			}
-		}
-		for(Bonus b:bonus)
-			b.update(arg0, arg1, arg2);
-		for (int i=0;i<bonus.size();i++){
-			if(bonus.get(i).isDestructed()){
-				bonus.remove(i);
-			}
-		}
-		decor.update(arg0, arg1, arg2);
-		for (int i=0;i<enemies.size();i++){
-			if(enemies.get(i).isDestructed()){
-				if (Math.random() <= 0.2) {
-					bonus.add(new Bonus(enemies.get(i).getX()+(enemies.get(i).getWidth()/2),enemies.get(i).getY()+(enemies.get(i).getHight()/2),10,Nico,(int)(nombre_bonus*Math.random()+1)));
+		if (Nico.getHP()>0) {
+			compt++;
+			for(Enemy12Gen e:enemieGen)
+				e.update(arg0, arg1, arg2);
+			Nico.update(arg0, arg1, arg2);
+			for(Enemy e:enemies)
+				e.update(arg0, arg1, arg2);
+			for(Projectile p:projectiles)
+				p.update(arg0, arg1, arg2);
+			for (int i=0;i<projectiles.size();i++){
+				if(projectiles.get(i).isDestructed()){
+					projectiles.remove(i);
 				}
-				score+=enemies.get(i).getScore();
-				enemies.remove(i);
 			}
-		}
-
-		if (compt==500) { //a ce moment on fait apparaitre le boss
-			Image i[]={bossBody,bossTowerL,bossTowerR};
-			new Boss(100,100,Nico,projectiles,i);
+			for(Bonus b:bonus)
+				b.update(arg0, arg1, arg2);
+			for (int i=0;i<bonus.size();i++){
+				if(bonus.get(i).isDestructed()){
+					bonus.remove(i);
+				}
+			}
+			decor.update(arg0, arg1, arg2);
+			for (int i=0;i<enemies.size();i++){
+				if(enemies.get(i).isDestructed()){
+					if (Math.random() <= 0.2) {
+						bonus.add(new Bonus(enemies.get(i).getX()+(enemies.get(i).getWidth()/2),enemies.get(i).getY()+(enemies.get(i).getHight()/2),10,Nico,(int)(nombre_bonus*Math.random()+1)));
+					}
+					score+=enemies.get(i).getScore();
+					enemies.remove(i);
+				}
+			}
+	
+			if (compt==500) { //a ce moment on fait apparaitre le boss
+				Image i[]={bossBody,bossTowerL,bossTowerR};
+				new Boss(100,100,Nico,projectiles,i);
+			}
 		}
 
 
@@ -159,7 +161,7 @@ public class World extends BasicGameState {
 		} else { 
 			name+=c;
 			if(key==Input.KEY_ENTER) {
-				Dao.addScore(name, score);
+				//Dao.addScore(name, score);
 				game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
 			}
 		}
