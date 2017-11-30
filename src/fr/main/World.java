@@ -44,7 +44,7 @@ public class World extends BasicGameState {
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		game=arg1;
 		projectiles= new ArrayList<Projectile>();
-		Nico=new Player(100,100,8,projectiles);
+		Nico=new Player(600,600,15,projectiles);
 		enemies=new ArrayList<Enemy>();
 		decor=new Decor();
 		enemies.add(new Enemy2(100,100,100,400,300,Nico,projectiles));
@@ -65,7 +65,7 @@ public class World extends BasicGameState {
 	
 	public static void reset() {
 		projectiles.clear();
-		Nico.reset(100,100,8,projectiles);
+		Nico.reset(600,600,15,projectiles);
 		enemies.clear();
 		decor.reset();
 		enemies.add(new Enemy2(100,100,100,400,300,Nico,projectiles));
