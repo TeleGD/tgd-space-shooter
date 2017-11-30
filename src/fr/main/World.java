@@ -159,10 +159,17 @@ public class World extends BasicGameState {
 		if(Nico.getHP()>0) {
 			Nico.keyPressed(key, c);
 		} else { 
-			name+=c;
-			if(key==Input.KEY_ENTER) {
-				//Dao.addScore(name, score);
-				game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
+			if (key==Input.KEY_BACK && name.length()!=0) {
+				name=name.substring(0, name.length()-1);
+			} else {
+				if(key==Input.KEY_ENTER && name.length()!=0) {
+					//Dao.addScore(name, score);
+					game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
+				} else {
+					if (key!=Input.KEY_ENTER && key!=Input.KEY_BACK && name.length()<20) {
+						name+=c;
+					}
+				}
 			}
 		}
 		if (key == Input.KEY_ESCAPE) {
