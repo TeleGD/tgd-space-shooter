@@ -23,12 +23,15 @@ public class Enemy extends Movable implements Rectangle{
 	protected ArrayList<Projectile> projectiles;
 	protected int compt;
 	protected int score;
+	protected char dirX,dirY;
 
 	public Enemy(double x, double y, Player player,ArrayList<Projectile> projectiles) {
 		this.x=x;
 		this.y=y;
 		this.height=30;
 		this.width=30;
+		this.dirX = 'n';
+		this.dirY = 'n';
 		this.destructed=false;
 		this.player=player;
 		this.projectiles=projectiles;
@@ -84,6 +87,36 @@ public class Enemy extends Movable implements Rectangle{
 				}
 			}
 		}
+	}
+	
+	protected void whereToGo(double speed, double depart,double position, char dir,char axe) {
+		if (position < depart ) {   //On est a gauche de l'objectif, il faut aller vers la droite
+			speed = 0.25;
+			if (dir == 'g') {  // Si on devait aller a gauche, c'est qu'on vient de depasser notre objectif
+				dir = 'a';  //on est arrive
+				speed = 0; // on arrete de bouger dans cette direction
+			}
+			else
+				dir = 'd';
+			
+		}
+		else {                   // Sinon on est a droite et on doit aller a gauche
+			speed = -0.25;	
+			if (dir == 'd') {
+				dir = 'a';
+				speed = 0;
+			}
+			else
+				dir = 'g';
+		}
+		if (axe == 'x') {   // On regarde sur quel axe il faut appliquer nos calculs
+			dirX = dir;
+			speedX = speed;
+		} else {
+			dirY = dir;
+			speedY = speed;
+		}
+			
 	}
 }
 

@@ -60,7 +60,13 @@ public class Enemy2 extends Enemy{
 		}
 		compt++;
 		
-		move(delta);
+		if ((dirX != 'a') && (dirY != 'a')) {  // Si on est encore en phase de placement :
+			whereToGo(speedX, startX, this.x, dirX, 'x');
+			whereToGo(speedY, startY, this.y, dirY, 'y');
+		}
+		else                 // Sinon on suis le patern
+			move(delta);
+		
 		moveX(delta);
 		moveY(delta);
 		colProj();

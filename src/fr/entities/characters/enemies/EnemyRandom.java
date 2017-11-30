@@ -74,7 +74,14 @@ public class EnemyRandom extends Enemy{
 
 		}
 		compt++;
-		move(delta);
+		
+		if ((dirX != 'a') && (dirY != 'a')) {  // Si on est encore en phase de placement :
+			whereToGo(speedX, xbox+widthbox/2, this.x, dirX, 'x');
+			whereToGo(speedY, ybox+heightbox/2, this.y, dirY, 'y');
+		}
+		else                 // Sinon on suis le patern
+			move(delta);
+		
 		moveX(delta);
 		moveY(delta);
 		colProj();

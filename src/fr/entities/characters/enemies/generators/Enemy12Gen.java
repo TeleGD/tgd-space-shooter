@@ -10,6 +10,7 @@ import fr.entities.characters.Player;
 import fr.entities.characters.enemies.Enemy;
 import fr.entities.characters.enemies.Enemy1;
 import fr.entities.characters.enemies.Enemy2;
+import fr.entities.characters.enemies.EnemyRandom;
 import fr.entities.projectiles.Projectile;
 
 /*
@@ -25,6 +26,9 @@ public class Enemy12Gen {
 	private Player player;
 	private ArrayList<Projectile> projectiles;
 	private ArrayList<Enemy> enemies;
+	private double alea;
+	private int vitesseApparition;
+	private int ajoutTemps; //vitesseApparition+ajoutTemps de frames avant le prochain ennemi
 	private int compt;//compteur permettant de reguler l'apparition d'enemis
 	
 	public Enemy12Gen(double x, double y, Player p,ArrayList<Projectile> projo, ArrayList<Enemy> en) {
@@ -33,15 +37,25 @@ public class Enemy12Gen {
 		this.player=p;
 		this.projectiles=projo;
 		this.enemies=en;
+		this.alea=0;
+		this.vitesseApparition=300;
+		this.ajoutTemps =(int) Math.random()*300;
 	}
 	
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		if (compt>400) {
+		if (compt>vitesseApparition+ajoutTemps) {
 			compt=0;
-			if(Math.random()>0.5) {
-				enemies.add(new Enemy2(x,y,Math.random()*200+40,Math.random()*1200+20,Math.random()*600+50,player,projectiles));
+			ajoutTemps=(int) Math.random()*ajoutTemps;
+			alea=Math.random();
+			if(alea>0.666) {
+				enemies.add(new Enemy2(x,y,Math.random()*200+40,Math.random()*1160+20,Math.random()*400+20,player,projectiles));
 			} else {
-				enemies.add(new Enemy1(x,y,Math.random()*400+100,Math.random()*400+500,Math.random()*650+40,player,projectiles));
+				if (alea<0.333) {
+					enemies.add(new Enemy1(x,y,Math.random()*400+100,Math.random()*600+50,Math.random()*400+30,player,projectiles));
+				} else {
+					enemies.add(new EnemyRandom(x,y,player,projectiles,(int) Math.random()*300+50,(int) Math.random()*200+25,(int) Math.random()*700+200,(int) Math.random()*250+150));
+				}
+				
 			}
 		}
 		compt++;

@@ -15,8 +15,7 @@ import fr.entities.projectiles.StraightProjectile;
 
 public class Enemy1 extends Enemy{
 	
-	private double startX, startY; //Coordonnees autour desquels le mouvement s'effectue
-	private char dirX,dirY; 
+	private double startX, startY; //Coordonnees autour desquels le mouvement s'effectue 
 	private double range; //range du deplacement
 	private Image image;
 	
@@ -29,8 +28,6 @@ public class Enemy1 extends Enemy{
 		this.lifeInit=10;
 		this.startX = startX;
 		this.startY = startY;
-		this.dirX = 'n';
-		this.dirY = 'n';
 		this.range=range;
 		this.width=50;
 		this.height=60;
@@ -47,7 +44,6 @@ public class Enemy1 extends Enemy{
 	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.red);
-		//arg2.fillRect((float)x, (float)y, (float)width, (float)height);
 		arg2.drawImage(image, (float)(x+width/2-image.getWidth()/2), (float)(y+height/2-image.getHeight()/2));
 		showLife(arg2);
 	}
@@ -80,34 +76,6 @@ public class Enemy1 extends Enemy{
 			speedX = -0.25;
 	}
 	
-	public void whereToGo(double speed, double depart,double position, char dir,char axe) {
-		if (position < depart ) {   //On est � gauche de l'objectif, il faut aller vers la droite
-			speed = 0.25;
-			if (dir == 'g') {  // Si on devait aller � gauche, c'est qu'on vient de d�passer notre objectif
-				dir = 'a';  //on est arriv�
-				speed = 0; // on arr�te de bouger dans cette direction
-			}
-			else
-				dir = 'd';
-			
-		}
-		else {                   // Sinon on est � droite et on doit aller � gauche
-			speed = -0.25;	
-			if (dir == 'd') {
-				dir = 'a';
-				speed = 0;
-			}
-			else
-				dir = 'g';
-		}
-		if (axe == 'x') {   // On regarde sur quel axe il faut appliquer nos calculs
-			dirX = dir;
-			speedX = speed;
-		} else {
-			dirY = dir;
-			speedY = speed;
-		}
-			
-	}
+	
 	
 }
