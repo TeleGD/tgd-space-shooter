@@ -60,7 +60,7 @@ public class Player extends fr.entities.Movable implements Circle{
 		} else {
 			arg2.drawImage(imageInvul, (float)(x-imageInvul.getWidth()/2), (float)(y-imageInvul.getHeight()/1.8));
 		}
-		arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
+		//arg2.fillOval((float)(x-radius),(float)( y-radius),(float)( 2*radius),(float)( 2*radius));
 		for (int i=0;i<HP;i++) {
 			arg2.drawImage(image, (float)(i*(10+image.getWidth())), 10);
 		}
