@@ -55,7 +55,7 @@ public class World extends BasicGameState {
 		nombre_bonus=3;
 		score=0;
 		compt=0;
-		name="";
+		name=null;
 		bossBody=new Image("img/ship/BossBody.png");
 		bossTowerL=new Image("img/ship/BossTowerL.png");
 		bossTowerR=new Image("img/ship/BossTowerR.png");
@@ -163,7 +163,8 @@ public class World extends BasicGameState {
 				name=name.substring(0, name.length()-1);
 			} else {
 				if(key==Input.KEY_ENTER && name.length()!=0) {
-					//Dao.addScore(name, score);
+					System.out.println(name.substring(name.length()-1));
+					Dao.addScore(name, score);
 					game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
 				} else {
 					if (key!=Input.KEY_ENTER && key!=Input.KEY_BACK && name.length()<20) {
