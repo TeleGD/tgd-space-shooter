@@ -18,11 +18,15 @@ public class StraightProjectile extends Projectile{
 		super(centerPointX,centerPointY,radius,player,allied);
 		this.speedY = speedY;
 		this.speedX = speedX;
+		float a=(float)Math.acos(speedX);
+		
+		if(speedY<0)
+			a=-a;
 		try {
 			sprite=new Image("img/projectiles/shot.png");
 			sprite=sprite.getScaledCopy((float) 0.6);
+			sprite.rotate((float) (90+a*360/6.28));
 		} catch (SlickException e) {
-			// nous donne la trace de l'erreur si on ne peut charger l'image correctement
 			e.printStackTrace();
 		}
 	}
