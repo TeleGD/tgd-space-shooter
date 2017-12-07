@@ -2,6 +2,7 @@ package fr.main;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -39,6 +40,7 @@ public class World extends BasicGameState {
 	private static Decor decor;
 	private static String name;
 	private StateBasedGame game;
+	private ArrayList<Character> letters= new ArrayList<Character>(Arrays.asList('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'));
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -155,19 +157,22 @@ public class World extends BasicGameState {
 		Nico.keyReleased(key, c);
 	}
 
+	
 	public void keyPressed(int key, char c) {
+		
 		if(Nico.getHP()>0) {
 			Nico.keyPressed(key, c);
 		} else { 
 			if (key==Input.KEY_BACK && name.length()!=0) {
 				name=name.substring(0, name.length()-1);
 			} else {
+				
 				if(key==Input.KEY_ENTER && name.length()!=0) {
 					System.out.println(name.substring(name.length()-1));
 					Dao.addScore(name, score);
 					game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
 				} else {
-					if (key!=Input.KEY_ENTER && key!=Input.KEY_BACK && name.length()<20) {
+					if (letters.contains(c)&& name.length()<20) {
 						name+=c;
 					}
 				}
