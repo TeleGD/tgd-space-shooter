@@ -90,24 +90,26 @@ public class Enemy extends Movable implements Rectangle{
 	}
 	
 	protected void whereToGo(double speed, double depart,double position, char dir,char axe) {
-		if (position < depart ) {   //On est a gauche de l'objectif, il faut aller vers la droite
+		if ((position < depart)  && (dir != 'a')) {   //On n'est pas encore arrivés et On est a gauche (dessus) de l'objectif, il faut aller vers la droite (bas)
 			speed = 0.25;
-			if (dir == 'g') {  // Si on devait aller a gauche, c'est qu'on vient de depasser notre objectif
+			if (dir == 'g') {  // Si on devait aller a gauche (haut), c'est qu'on vient de depasser notre objectif
 				dir = 'a';  //on est arrive
 				speed = 0; // on arrete de bouger dans cette direction
 			}
-			else
+			else {
 				dir = 'd';
+			}
 			
 		}
-		else {                   // Sinon on est a droite et on doit aller a gauche
+		else if (dir != 'a') {                   // Sinon on est a droite et on doit aller a gauche
 			speed = -0.25;	
 			if (dir == 'd') {
 				dir = 'a';
 				speed = 0;
 			}
-			else
+			else {
 				dir = 'g';
+			}
 		}
 		if (axe == 'x') {   // On regarde sur quel axe il faut appliquer nos calculs
 			dirX = dir;

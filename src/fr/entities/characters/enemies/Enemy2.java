@@ -15,9 +15,10 @@ import fr.entities.projectiles.StraightProjectile;
 
 public class Enemy2 extends Enemy{
 	
-	private double startX, startY; //Coordonnees autour desquels le mouvement s'effectue 
+	private double startX, startY; //Coordonnees autour desquelles le mouvement s'effectue 
 	private double range; //range du deplacement
 	private Image image;
+	private boolean place;
 	
 
 	public Enemy2(double x, double y,double range,double startX,double startY, Player player, ArrayList<Projectile> projectiles) {
@@ -32,6 +33,7 @@ public class Enemy2 extends Enemy{
 		this.width=45;
 		this.height=65;
 		this.score=20;
+		this.place=false;
 		try {
 			image=new Image("img/ship/enemy2.png");
 			image=image.getScaledCopy((float) 0.5);
@@ -55,12 +57,16 @@ public class Enemy2 extends Enemy{
 			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,0,0.2));
 		}
 		compt++;
-	
-		if ((dirX != 'a') && (dirY != 'a')) {  // Si on est encore en phase de placement :
+		
+		if (!(this.place)) {
 			whereToGo(speedX, startX, this.x, dirX, 'x');
 			whereToGo(speedY, startY, this.y, dirY, 'y');
+			this.place=!((dirX != 'a') || (dirY != 'a'));
+			if (this.place) {
+				speedY=0.25;
+			}
 		}
-		else                 // Sinon on suis le patern
+		else                 // Sinon on suit le patern
 			move();
 		
 		moveX(delta);
@@ -71,9 +77,9 @@ public class Enemy2 extends Enemy{
 
 	public void move(){
 		if((Math.abs(this.y-this.startY) > range)&&(this.y<this.startY))
-			speedY = -0.25;
-		else if((Math.abs(this.y-this.startY) > range)&&(this.y>this.startY))
 			speedY = 0.25;
+		else if((Math.abs(this.y-this.startY) > range)&&(this.y>this.startY))
+			speedY = -0.25;
 	}
 	
 	

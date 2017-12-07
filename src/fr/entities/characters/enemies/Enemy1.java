@@ -18,6 +18,7 @@ public class Enemy1 extends Enemy{
 	private double startX, startY; //Coordonnees autour desquels le mouvement s'effectue 
 	private double range; //range du deplacement
 	private Image image;
+	private boolean place;
 	
 
 	public Enemy1(double x, double y,double range,double startX,double startY, Player player, ArrayList<Projectile> projectiles) {
@@ -55,10 +56,14 @@ public class Enemy1 extends Enemy{
 			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,0,0.2));
 		}
 		compt++;
-	
-		if ((dirX != 'a') && (dirY != 'a')) {  // Si on est encore en phase de placement :
+
+		if (!(this.place)) {
 			whereToGo(speedX, startX, this.x, dirX, 'x');
 			whereToGo(speedY, startY, this.y, dirY, 'y');
+			this.place=!((dirX != 'a') || (dirY != 'a'));
+			if (this.place) {
+				speedX=0.25;
+			}
 		}
 		else                 // Sinon on suis le patern
 			move();
