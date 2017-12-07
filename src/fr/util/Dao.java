@@ -54,7 +54,7 @@ public class Dao {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:datas.db");
 			stmt=c.createStatement();
-			System.out.println("INSERT INTO SCORES (NAME,SCORE) VALUES ('"+name+"',"+score+")");
+			//System.out.println("INSERT INTO SCORES (NAME,SCORE) VALUES ('"+name+"',"+score+")");
 			stmt.executeUpdate("INSERT INTO SCORES (NAME,SCORE) VALUES ('"+name+"',"+score+")");
 			stmt.close();
 			c.close();

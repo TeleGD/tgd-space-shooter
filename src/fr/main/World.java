@@ -40,8 +40,9 @@ public class World extends BasicGameState {
 	private static Decor decor;
 	private static String name;
 	private StateBasedGame game;
-	private ArrayList<Character> letters= new ArrayList<Character>(Arrays.asList('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'));
-
+	private ArrayList<Character> letters= new ArrayList<Character>(Arrays.asList('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'));
+	private boolean maj;
+	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		game=arg1;
@@ -61,7 +62,7 @@ public class World extends BasicGameState {
 		bossBody=new Image("img/ship/BossBody.png");
 		bossTowerL=new Image("img/ship/BossTowerL.png");
 		bossTowerR=new Image("img/ship/BossTowerR.png");
-
+		maj = false;
 	}
 	
 	
@@ -155,6 +156,9 @@ public class World extends BasicGameState {
 
 	public void keyReleased(int key, char c) {
 		Nico.keyReleased(key, c);
+		if(key==Input.KEY_LSHIFT) {
+			maj=false;
+		}
 	}
 
 	
@@ -166,14 +170,19 @@ public class World extends BasicGameState {
 			if (key==Input.KEY_BACK && name.length()!=0) {
 				name=name.substring(0, name.length()-1);
 			} else {
-				
+				if(key==Input.KEY_LSHIFT) {
+					maj=true;
+				}
 				if(key==Input.KEY_ENTER && name.length()!=0) {
-					System.out.println(name.substring(name.length()-1));
 					Dao.addScore(name, score);
 					game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
 				} else {
+					System.out.println(""+c);
 					if (letters.contains(c)&& name.length()<20) {
-						name+=c;
+						if(maj)
+							name+=(""+c).toUpperCase();
+						else
+							name+=c;
 					}
 				}
 			}
