@@ -22,9 +22,19 @@ public class Boss extends Enemy {
 	protected ArrayList<BossTurret> parts;
 	private Image body;
 	int time;
+	double startX;
+	double startY;
+	boolean arrive;
 
 	public Boss(double x, double y, Player player,ArrayList<Projectile> projectiles,Image[] img){
 		super(x,y,player,projectiles);
+		
+		this.x=-100;
+		this.y=-100;
+		arrive = false;
+		startX = x;
+		startY = y;
+		
 		World.addEnemy(this);
 		time=0;
 		this.width = 100;
@@ -39,9 +49,9 @@ public class Boss extends Enemy {
 		parts = new ArrayList<BossTurret>();
 
 		//tourelle gauche
-		parts.add(new BossTurret(x-20, y+height/2, player, projectiles,speedX,speedY,this,img[1]));
+		parts.add(new BossTurret(this.x-20, this.y+height/2, player, projectiles,speedX,speedY,this,img[1]));
 		//tourelle droite
-		parts.add(new BossTurret(x+width, y+height/2, player, projectiles,speedX,speedY,this,img[2]));
+		parts.add(new BossTurret(this.x+width, this.y+height/2, player, projectiles,speedX,speedY,this,img[2]));
 	}
 
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
@@ -93,6 +103,9 @@ public class Boss extends Enemy {
 	}
 
 	public void move(int delta){
+		if(!arrive)
+			entry();
+		
 		if(this.x+width >= 1280)
 			this.speedX=-0.1;
 		if(this.x < 0)
@@ -100,6 +113,25 @@ public class Boss extends Enemy {
 
 		moveX(delta);
 		moveY(delta);
+	}
+	
+	public void entry(){
+		if(x<startX)
+			speedX=0.1;
+		else
+			speedX=-0.1;
+		
+		if(y<startY)
+			speedY=0.1;
+		else
+			speedY=-0.1;
+
+		
+		if((Math.abs(x-startX) < 1 && Math.abs(y-startY) < 1)){
+			arrive = true;
+			speedX =0.1;
+			speedY=0;
+		}
 	}
 
 

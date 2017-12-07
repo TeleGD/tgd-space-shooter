@@ -41,8 +41,8 @@ public class BossTurret extends Enemy {
 		if(!this.isDestructed()){
 			arg2.setColor(Color.pink);
 			//arg2.fillRect((float)x, (float)y, (float)width, (float)height);
-			showLife(arg2);
 			arg2.drawImage(img, bossX-25, bossY-50);
+			showLife(arg2);
 		}
 		
 	}
