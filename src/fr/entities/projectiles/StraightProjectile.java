@@ -14,7 +14,7 @@ public class StraightProjectile extends Projectile{
 
 	private Image sprite;
 	
-	public StraightProjectile(double centerPointX, double centerPointY, int radius,Player player,boolean allied,double speedX,double speedY) {
+	public StraightProjectile(String nameSprite, double centerPointX, double centerPointY, int radius,Player player,boolean allied,double speedX,double speedY) {
 		super(centerPointX,centerPointY,radius,player,allied);
 		this.speedY = speedY;
 		this.speedX = speedX;
@@ -23,7 +23,7 @@ public class StraightProjectile extends Projectile{
 		if(speedY<0)
 			a=-a;
 		try {
-			sprite=new Image("img/projectiles/shot.png");
+			sprite=new Image(nameSprite);
 			sprite=sprite.getScaledCopy((float) 0.6);
 			sprite.rotate((float) (90+a*360/6.28));
 		} catch (SlickException e) {

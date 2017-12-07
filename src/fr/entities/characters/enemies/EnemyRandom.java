@@ -29,6 +29,7 @@ public class EnemyRandom extends Enemy{
 	private Image image;
 	private boolean outOfBox;
 	private int i;
+	private String nameSprite = "img/projectiles/shot.png";
 	
 	public EnemyRandom(double x, double y, Player player, ArrayList<Projectile> projectiles, double xbox, double ybox, double widthbox, double heightbox) {
 		super(x, y, player,projectiles);
@@ -69,7 +70,7 @@ public class EnemyRandom extends Enemy{
 		if(compt>50){
 			compt=0;
 
-			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,0,0.2));
+			projectiles.add(new StraightProjectile(nameSprite, x+width/2,y+height/2,2,player,false,0,0.2));
 
 
 		}

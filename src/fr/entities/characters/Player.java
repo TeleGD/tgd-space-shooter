@@ -26,6 +26,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	private double compt;
 	private double speedshoot;
 	private int invulnerability;
+	private String nameSprite = "img/projectiles/playerShot.png";
 	
 	
 	public Player(double centerPointX, double centerPointY, int radius, ArrayList<Projectile> ProjectileList) {
@@ -149,7 +150,7 @@ public class Player extends fr.entities.Movable implements Circle{
 	
 	public void Shoot() {
 		
-		ProjectileList.add(new StraightProjectile(x,y,2,this,true,0,-0.5));
+		ProjectileList.add(new StraightProjectile(nameSprite, x,y,2,this,true,0,-0.5));
 	}
 	
 	

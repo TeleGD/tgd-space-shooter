@@ -20,6 +20,7 @@ public class BossTurret extends Enemy {
 	double projY;
 	private Image img;
 	private float bossX,bossY;
+	private String nameSprite = "img/projectiles/bossShot1.png";
 	
 	Enemy parent;
 	
@@ -51,7 +52,7 @@ public class BossTurret extends Enemy {
 		if(!isDestructed()){
 			if(compt>20){
 				compt=0;
-				projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,projY,Math.sqrt(0.20-projY*projY)));
+				projectiles.add(new StraightProjectile(nameSprite, x+width/2,y+height/2,2,player,false,projY,Math.sqrt(0.20-projY*projY)));
 				if(Math.abs(projY) >= 0.4)
 					nextProjY=-nextProjY;
 				projY+=nextProjY;

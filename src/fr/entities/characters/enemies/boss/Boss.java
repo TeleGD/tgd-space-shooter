@@ -25,6 +25,7 @@ public class Boss extends Enemy {
 	double startX;
 	double startY;
 	boolean arrive;
+	private String nameSprite = "img/projectiles/bossShot01.png";
 
 	public Boss(double x, double y, Player player,ArrayList<Projectile> projectiles,Image[] img){
 		super(x,y,player,projectiles);
@@ -95,9 +96,9 @@ public class Boss extends Enemy {
 
 		if (time>50) {
 			time=0;
-			projectiles.add(new StraightProjectile(x+width/2-10, y+height, 2, player, false,0,0.5));
+			projectiles.add(new StraightProjectile(nameSprite, x+width/2-10, y+height, 2, player, false,0,0.5));
 			
-			projectiles.add(new StraightProjectile(x+width/2+10, y+height, 2, player, false,0	,0.5));
+			projectiles.add(new StraightProjectile(nameSprite, x+width/2+10, y+height, 2, player, false,0	,0.5));
 		}
 		time++;
 	}

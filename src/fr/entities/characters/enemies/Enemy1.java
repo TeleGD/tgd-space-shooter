@@ -19,6 +19,7 @@ public class Enemy1 extends Enemy{
 	private double range; //range du deplacement
 	private Image image;
 	private boolean place;
+	private String nameSprite = "img/projectiles/shot.png";
 	
 
 	public Enemy1(double x, double y,double range,double startX,double startY, Player player, ArrayList<Projectile> projectiles) {
@@ -53,7 +54,7 @@ public class Enemy1 extends Enemy{
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		if(compt>50){
 			compt=0;
-			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,0,0.2));
+			projectiles.add(new StraightProjectile(nameSprite, x+width/2,y+height/2,2,player,false,0,0.2));
 		}
 		compt++;
 
