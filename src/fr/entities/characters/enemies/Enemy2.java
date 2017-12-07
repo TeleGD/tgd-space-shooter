@@ -15,24 +15,20 @@ import fr.entities.projectiles.StraightProjectile;
 
 public class Enemy2 extends Enemy{
 	
-	private boolean isArrived = false;
-	private double startX, startY, signeDiffX, signeDiffY,range;
-	/*
-	 * StartY,StartX sont les cooredonn�es du point autour duquel le mouvement est effectu�
-	 * range est la distance max entre le point (startX,startY) et l'ennemi
-	 */
+	private double startX, startY; //Coordonnees autour desquels le mouvement s'effectue 
+	private double range; //range du deplacement
 	private Image image;
 	
-	public Enemy2(double x, double y,double range, double startX, double startY, Player player, ArrayList<Projectile> projectiles) {
+
+	public Enemy2(double x, double y,double range,double startX,double startY, Player player, ArrayList<Projectile> projectiles) {
 		super(x, y, player,projectiles);
-		this.startX = startX;
-		this.startY = startY;
-		this.signeDiffX = (x-startX)/Math.abs(x-startX);
-		this.signeDiffY = (y-startY)/Math.abs(y-startY);
 		compt=0;
-		this.range=range;
+		this.speedY=0.25;
 		this.life=10;
 		this.lifeInit=10;
+		this.startX = startX;
+		this.startY = startY;
+		this.range=range;
 		this.width=45;
 		this.height=65;
 		this.score=20;
@@ -45,9 +41,9 @@ public class Enemy2 extends Enemy{
 		}
 	}
 	
+	
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		arg2.setColor(Color.red);
-		//arg2.fillRect((float)x, (float)y, (float)width, (float)height);
 		arg2.drawImage(image, (float)(x+width/2-image.getWidth()/2), (float)(y+height/2-image.getHeight()/2));
 		showLife(arg2);
 	}
@@ -59,45 +55,27 @@ public class Enemy2 extends Enemy{
 			projectiles.add(new StraightProjectile(x+width/2,y+height/2,2,player,false,0,0.2));
 		}
 		compt++;
-		
+	
 		if ((dirX != 'a') && (dirY != 'a')) {  // Si on est encore en phase de placement :
 			whereToGo(speedX, startX, this.x, dirX, 'x');
 			whereToGo(speedY, startY, this.y, dirY, 'y');
 		}
 		else                 // Sinon on suis le patern
-			move(delta);
+			move();
 		
 		moveX(delta);
 		moveY(delta);
 		colProj();
-		
 	}
 
 
-	public void move(int delta){
-		if(isArrived) {
-			if((Math.abs(this.y-this.startY) > range)&&(this.y<this.startY))
-				speedY = 0.25;
-			else if((Math.abs(this.y-this.startY) > range)&&(this.y>this.startY))
-				speedY = -0.25;
-		} else {
-			if(this.y < startY)
-				speedY = 0.25;
-			else if(this.y > startY)
-				speedY = -0.25;
-			if(this.x < startX)
-				speedX = 0.25;
-			else if (this.x > startX)
-				speedX = -0.25;
-			
-			if((x-startX)/Math.abs(x-startX) == -signeDiffX)
-				speedX = 0;
-			if((y-startY)/Math.abs(y-startY) == -signeDiffY)
-				speedY = 0;
-			if((x-startX)/Math.abs(x-startX) == -signeDiffX && (y-startY)/Math.abs(y-startY) == -signeDiffY) {
-				isArrived = true;
-				speedY = 0.25;
-			}
-		}
+	public void move(){
+		if((Math.abs(this.y-this.startY) > range)&&(this.y<this.startY))
+			speedY = -0.25;
+		else if((Math.abs(this.y-this.startY) > range)&&(this.y>this.startY))
+			speedY = 0.25;
 	}
+	
+	
+	
 }
