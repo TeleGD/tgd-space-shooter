@@ -43,7 +43,7 @@ public class MenuPrincipal extends BasicGameState {
 	public void afficheMenus(Graphics arg2) {
 		String[] menus = {"JOUER","HIGH SCORE","CREDITS","QUITTER"};
 		arg2.setColor(Color.green);
-		arg2.drawString("Trucs à faire : piratepad.net", 490, 280);
+		arg2.drawString("Trucs à faire : piratepad.net/tgd", 490, 280);
 		for (int i = 0; i < menus.length; i++) {
 			if (i == choix) {arg2.setColor(Color.green);}
 			else {arg2.setColor(Color.white);}

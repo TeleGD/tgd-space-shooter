@@ -128,7 +128,7 @@ public class World extends BasicGameState {
 			for (int i=0;i<enemies.size();i++){
 				if(enemies.get(i).isDestructed()){
 					if (Math.random() <= 0.2) {
-						bonus.add(new Bonus(enemies.get(i).getX()+(enemies.get(i).getWidth()/2),enemies.get(i).getY()+(enemies.get(i).getHight()/2),10,Nico,(int)(nombre_bonus*Math.random()+1)));
+						bonus.add(new Bonus(enemies.get(i).getX()+(enemies.get(i).getWidth()/2),enemies.get(i).getY()+(enemies.get(i).getHight()/2),15,Nico,(int)(nombre_bonus*Math.random()+1)));
 					}
 					score+=enemies.get(i).getScore();
 					enemies.remove(i);
@@ -177,7 +177,7 @@ public class World extends BasicGameState {
 					Dao.addScore(name, score);
 					game.enterState(MenuPrincipal.ID, new FadeOutTransition(), new FadeInTransition());
 				} else {
-					System.out.println(""+c);
+					//System.out.println(""+c);
 					if (letters.contains(c)&& name.length()<20) {
 						if(maj)
 							name+=(""+c).toUpperCase();
