@@ -13,6 +13,7 @@ import fr.entities.characters.Player;
 import fr.entities.characters.enemies.Enemy;
 import fr.entities.projectiles.Projectile;
 import fr.entities.projectiles.StraightProjectile;
+import fr.entities.projectiles.StraightProjectileAnimated;
 
 public class BossTurret extends Enemy {
 	
@@ -21,6 +22,7 @@ public class BossTurret extends Enemy {
 	private Image img;
 	private float bossX,bossY;
 	private String nameSprite = "img/projectiles/bossShot1.png";
+	private ArrayList <String> nameSpriteList;
 	
 	Enemy parent;
 	
@@ -35,6 +37,12 @@ public class BossTurret extends Enemy {
 		this.projY = 0;
 		this.img=img;
 		this.parent = parent;
+		nameSpriteList = new ArrayList<String>();
+		nameSpriteList.add("img/projectiles/bossShot00.png");
+		nameSpriteList.add("img/projectiles/bossShot01.png");
+		nameSpriteList.add("img/projectiles/bossShot02.png");
+		nameSpriteList.add("img/projectiles/bossShot03.png");
+
 		
 	}
 	
@@ -52,7 +60,8 @@ public class BossTurret extends Enemy {
 		if(!isDestructed()){
 			if(compt>20){
 				compt=0;
-				projectiles.add(new StraightProjectile(nameSprite, x+width/2,y+height/2,2,player,false,projY,Math.sqrt(0.20-projY*projY)));
+//				projectiles.add(new StraightProjectile(nameSprite, x+width/2,y+height/2,2,player,false,projY,Math.sqrt(0.20-projY*projY)));
+				projectiles.add(new StraightProjectileAnimated(nameSpriteList, x+width/2,y+height/2,2,player,false,projY,Math.sqrt(0.20-projY*projY)));
 				if(Math.abs(projY) >= 0.4)
 					nextProjY=-nextProjY;
 				projY+=nextProjY;
