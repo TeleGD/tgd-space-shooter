@@ -22,14 +22,14 @@ public class NameMenu extends BasicGameState{
 	public static int ID=19;
 	private int compt;
 	private TrueTypeFont font;
-	
-	
+
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame game) throws SlickException {
 		compt =0;
 		font=FontUtils.loadFont("space_age.ttf",Font.PLAIN,55,false);
 	}
-	
+
 	@Override
 	public void enter(GameContainer arg0, StateBasedGame game) throws SlickException {
 		game.addState(new WelcomeMenu());
@@ -52,7 +52,7 @@ public class NameMenu extends BasicGameState{
 		if(compt>200) {
 			game.enterState(Logo.ID,new FadeOutTransition(),new FadeInTransition());
 		}
-		
+
 		if (compt==2) {
 			game.getState(WelcomeMenu.ID).init(arg0, game);
 			game.getState(MenuPrincipal.ID).init(arg0, game);
@@ -67,5 +67,5 @@ public class NameMenu extends BasicGameState{
 		return ID;
 	}
 
-	
+
 }

@@ -16,23 +16,23 @@ import fr.entities.projectiles.StraightProjectile;
 import fr.entities.projectiles.StraightProjectileAnimated;
 
 public class BossTurret extends Enemy {
-	
+
 	double nextProjY;
 	double projY;
 	private Image img;
 	private float bossX,bossY;
 	private String nameSprite = "img/projectiles/bossShot1.png";
 	private ArrayList <String> nameSpriteList;
-	
+
 	Enemy parent;
-	
+
 	public BossTurret(double x, double y, Player player,ArrayList<Projectile> projectiles,double speedX,double speedY, Enemy parent, Image img){
 		super(x,y,player,projectiles);
 		this.width = 20;
 		this.height = 20;
 		this.life=10;
 		this.lifeInit=10;
-		
+
 		this.nextProjY = 0.1;
 		this.projY = 0;
 		this.img=img;
@@ -43,9 +43,9 @@ public class BossTurret extends Enemy {
 		nameSpriteList.add("img/projectiles/bossShot02.png");
 		nameSpriteList.add("img/projectiles/bossShot03.png");
 
-		
+
 	}
-	
+
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		if(!this.isDestructed()){
 			arg2.setColor(Color.pink);
@@ -53,9 +53,9 @@ public class BossTurret extends Enemy {
 			arg2.drawImage(img, bossX-25, bossY-50);
 			showLife(arg2);
 		}
-		
+
 	}
-	
+
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		if(!isDestructed()){
 			if(compt>20){
@@ -69,21 +69,21 @@ public class BossTurret extends Enemy {
 			compt++;
 			colProj();
 		}
-		
+
 		move(delta);
-		
+
 	}
-	
+
 	public void move(int delta){
 		this.speedX = parent.getSpeedX();
 		this.speedY = parent.getSpeedY();
-		
+
 		moveX(delta);
 		moveY(delta);
 	}
-	
-	
-	
+
+
+
 	public void setBossPos(float x,float y) {
 		this.bossX=x;
 		this.bossY=y;

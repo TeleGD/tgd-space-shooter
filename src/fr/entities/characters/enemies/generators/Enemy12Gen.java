@@ -15,13 +15,13 @@ import fr.entities.projectiles.Projectile;
 
 /*
  * Generateur d'enemis 1 ou 2:
- * 
+ *
  * Genere aleatoirement des enemis 1 et 2 et les fait apparaitre dans le world
  * Ce generateur n'est pas une entite physique et pour cela n'a pas de fonction d'affichage (render)
  */
 
 public class Enemy12Gen {
-	
+
 	private double x,y;
 	private Player player;
 	private ArrayList<Projectile> projectiles;
@@ -30,7 +30,7 @@ public class Enemy12Gen {
 	private int vitesseApparition;
 	private int ajoutTemps; //vitesseApparition+ajoutTemps de frames avant le prochain ennemi
 	private int compt;//compteur permettant de reguler l'apparition d'enemis
-	
+
 	public Enemy12Gen(double x, double y, Player p,ArrayList<Projectile> projo, ArrayList<Enemy> en) {
 		this.x=x;
 		this.y=y;
@@ -41,7 +41,7 @@ public class Enemy12Gen {
 		this.vitesseApparition=300;
 		this.ajoutTemps =(int) Math.random()*300;
 	}
-	
+
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		if (compt>vitesseApparition+ajoutTemps) {
 			compt=0;
@@ -55,7 +55,7 @@ public class Enemy12Gen {
 				} else {
 					enemies.add(new EnemyRandom(x,y,player,projectiles,(int) Math.random()*300+50,(int) Math.random()*200+25,(int) Math.random()*700+200,(int) Math.random()*250+150));
 				}
-				
+
 			}
 		}
 		compt++;

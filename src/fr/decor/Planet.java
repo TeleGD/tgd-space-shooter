@@ -9,11 +9,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import fr.entities.Movable;
 
 public class Planet extends Movable{
-	
+
 	private double x,y,speedY;
 	private Image image;
 	private Boolean destructed;
-	
+
 	public Planet(double x,double y)
 	{
 		this.destructed=false;
@@ -40,7 +40,7 @@ public class Planet extends Movable{
 			destructed=true;
 		}
 	}
-	
+
 	public Boolean getDestructed() {
 		return destructed;
 	}

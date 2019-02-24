@@ -20,38 +20,38 @@ public class StraightProjectileAnimated extends Projectile{
 	private Image sprite3;
 	private ArrayList <String> nameSpriteList;
 	private ArrayList <Image> sprites;
-	
+
 	public StraightProjectileAnimated(ArrayList <String> nameSpriteList, double centerPointX, double centerPointY, int radius,Player player,boolean allied,double speedX,double speedY) {
 		super(centerPointX,centerPointY,radius,player,allied);
 		this.speedY = speedY;
 		this.speedX = speedX;
 		this.nameSpriteList = nameSpriteList;
 		float a=(float)Math.acos(speedX);
-		
+
 		if(speedY<0)
 			a=-a;
 		sprite0 = loadImage(a,0, sprite0);
 		sprite1 = loadImage(a,1, sprite1);
 		sprite2 = loadImage(a,2, sprite2);
 		sprite3 = loadImage(a,3, sprite3);
-		
+
 		sprites = new ArrayList<Image>();
-		
+
 		sprites.add(sprite0);
 		sprites.add(sprite1);
 		sprites.add(sprite2);
 		sprites.add(sprite3);
 		state = 0;
 	}
-	
-	
+
+
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		if (!destructed) {
 			state += 0.1;
 			if (state > 39) {
-				state = 0;		
+				state = 0;
 			}
 			g.drawImage(sprites.get(state / 10), (float)(x), (float)(y));
 		}
@@ -67,7 +67,7 @@ public class StraightProjectileAnimated extends Projectile{
 			p.loseHP();
 		}
 	}
-	
+
 	public Image loadImage(float a,int i, Image sprite) {
 		try {
 			sprite=new Image(nameSpriteList.get(i));
@@ -76,7 +76,7 @@ public class StraightProjectileAnimated extends Projectile{
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
+
 		return sprite;
 	}
 

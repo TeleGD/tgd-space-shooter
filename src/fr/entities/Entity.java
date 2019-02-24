@@ -6,9 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public abstract class Entity {
-	
+
 	protected double x,y;
-	
+
 	public abstract void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException;
 	public abstract void update(GameContainer container, StateBasedGame game, int delta) throws SlickException;
 

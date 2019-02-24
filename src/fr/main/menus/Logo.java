@@ -17,14 +17,14 @@ public class Logo extends BasicGameState{
 	private int compt;
 	private Image img;
 	private StateBasedGame game;
-	
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame game) throws SlickException {
 		compt =0;
 		img = new Image("img/Logo.png");
 		this.game=game;
 	}
-	
+
 	@Override
 	public void enter(GameContainer arg0, StateBasedGame game) throws SlickException {
 		game.addState(new WelcomeMenu());
@@ -41,7 +41,7 @@ public class Logo extends BasicGameState{
 		if(compt>200) {
 			game.enterState(WelcomeMenu.ID,new FadeOutTransition(),new FadeInTransition());
 		}
-		
+
 	}
 
 	@Override

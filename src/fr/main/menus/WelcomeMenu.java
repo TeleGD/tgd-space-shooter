@@ -15,7 +15,7 @@ public class WelcomeMenu extends BasicGameState {
 	public static int ID = 1;
 	protected static StateBasedGame game;
 	protected GameContainer container;
-	
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.container = arg0;
@@ -38,8 +38,8 @@ public class WelcomeMenu extends BasicGameState {
 	public int getID() {
 		return ID;
 	}
-	
-	
+
+
 	public void keyPressed(int key, char c) {
 		if (key == Input.KEY_ESCAPE) {
 			System.exit(0);

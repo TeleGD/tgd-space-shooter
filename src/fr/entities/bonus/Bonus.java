@@ -11,7 +11,7 @@ import fr.entities.characters.Player;
 import fr.util.Circle;
 
 public class Bonus extends fr.entities.Movable implements Circle {
-	
+
 	private int radius;
 	private Player p;
 	private boolean destructed;
@@ -25,13 +25,13 @@ public class Bonus extends fr.entities.Movable implements Circle {
 	 * 5 : augmente largeur des tirs
 	 * 6 : diminue largeur des tirs
 	 * 7 : explosion qui enleve tous les tirs ennemis et degats aux ennemis
-	 * 
+	 *
 	 * plus de 10, changement de tirs :
 	 * 11 : triple tirs
 	 * 12 : tirs sinusoidaux
 	 * 13 : tirs plus gros et puissants, mais moins de souvent
 	 */
-	
+
 	public Bonus(double x, double y, int radius, Player player, int numeroBonus) {
 		this.x=x;
 		this.y=y;
@@ -55,7 +55,7 @@ public class Bonus extends fr.entities.Movable implements Circle {
 		// g.drawImage(image, (float)(x-image.getWidth()/2), (float)(y-image.getHeight()/2));
 		g.fillOval((float)(x-radius),(float)(y-radius),(float)(2*radius),(float)(2*radius));
 		g.drawImage(spriteBonus,(float) (x-spriteBonus.getWidth()/2),(float) (y-spriteBonus.getHeight()/2));
-		
+
 	}
 
 	@Override
@@ -69,21 +69,21 @@ public class Bonus extends fr.entities.Movable implements Circle {
 			p.setBonus(this.type);
 		}
 	}
-	
+
 
 	@Override
 	public int getRadius() {
 		return radius;
 	}
-	
-	
+
+
 	public boolean isDestructed() {
 		return destructed;
 	}
-	
+
 	public boolean isPicked() {
 		double distance = Math.sqrt( Math.pow(p.getX() - x , 2) + Math.pow(p.getY() - y, 2)) ;
 		return (distance <= p.getRadius() + radius);
 	}
-	
+
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Dao {
 
-	// Accéder à la BD
+	// AccÃ©der Ã  la BD
 	public static void openDataBase() {
 		@SuppressWarnings("unused")
 		Connection c = null;
@@ -77,7 +77,7 @@ public class Dao {
 			c = DriverManager.getConnection("jdbc:sqlite:datas.db");
 			stmt=c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM SCORES ORDER BY SCORE DESC");
-			
+
 			while(rs.next()) {
 				result.add(new Doublet(rs.getString(1),rs.getInt(2)));
 			}

@@ -58,7 +58,7 @@ public class Decor {
 	/*private void createPlanet() {
 		planets.add(new Planet(Math.random()*1280,-500));
 	}*/
-	
+
 	public void reset() {
 		i=0;
 		y=0;

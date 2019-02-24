@@ -18,7 +18,7 @@ public class MenuPrincipal extends BasicGameState {
 	int choix = 0;
 	protected static StateBasedGame game;
 	protected GameContainer container;
-	
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		this.container = arg0;
@@ -39,7 +39,7 @@ public class MenuPrincipal extends BasicGameState {
 	public int getID() {
 		return ID;
 	}
-	
+
 	public void afficheMenus(Graphics arg2) {
 		String[] menus = {"JOUER","HIGH SCORE","CREDITS","QUITTER"};
 		arg2.setColor(Color.green);
@@ -51,7 +51,7 @@ public class MenuPrincipal extends BasicGameState {
 			arg2.drawRect(525, 45+i*155, 205, 50);
 		}
 	}
-	
+
 	public void keyPressed(int key, char c) {
 		if (key == Input.KEY_ESCAPE) {
 			System.exit(0);
@@ -64,7 +64,7 @@ public class MenuPrincipal extends BasicGameState {
 		}
 		else if (key == Input.KEY_ENTER) {
 			switch (choix) {
-			case 0 : 
+			case 0 :
 				World.reset();
 				game.enterState(World.ID, new FadeOutTransition(),new FadeInTransition());
 			break;
@@ -75,4 +75,3 @@ public class MenuPrincipal extends BasicGameState {
 	}
 
 }
-

@@ -12,10 +12,9 @@ import fr.main.menus.NameMenu;
 
 public class Main extends StateBasedGame {
 
-	
+
 	public static void main(String[] args) throws SlickException {
-		
-		System.setProperty("org.lwjgl.librarypath", new File("natives").getAbsolutePath());
+
 		AppGameContainer app = new AppGameContainer(new Main(),1280,720,false);
 		app.setTargetFrameRate(60);
 		app.setVSync(true);
@@ -36,7 +35,7 @@ public class Main extends StateBasedGame {
 		@Override
 		public void initStatesList(GameContainer container) throws SlickException {
 			addState(new NameMenu());
-			
+
 			this.enterState(NameMenu.ID);
 		}
 
