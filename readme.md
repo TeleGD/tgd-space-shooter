@@ -1,4 +1,4 @@
-# tgd-shooter
+# *Space Shooter*
 
 Projet automne 2017
 
@@ -8,4 +8,4 @@ Ce dépôt n'est plus maintenu et subsiste uniquement en tant qu'archive.
 
 Les jeux suivants sont désormais développés au sein du dépôt [tgd-final](https://github.com/TeleGD/tgd-final) :
 
-* [tgd-shooter](https://github.com/TeleGD/tgd-shooter/tree/master/src) -> [tgd-final/SpaceShooter](https://github.com/TeleGD/tgd-final/tree/master/src/games/SpaceShooter)
+* [tgd-space-shooter](https://github.com/TeleGD/tgd-space-shooter/tree/master/src/spaceShooter) -> [tgd-final/SpaceShooter](https://github.com/TeleGD/tgd-final/tree/master/src/games/SpaceShooter)
