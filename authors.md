@@ -1,0 +1,12 @@
+- Amos George (@AmosGeorge)
+- David Forlen (@DavidForlen)
+- Frédéric Venier (@VFrederic)
+- Julien Michaux (@MichauxJulien)
+- Justin Noel (@JustinNoel121u)
+- Mathieu Milhem
+- Nathan Barloy (@nathanBarloy)
+- Nicolas Bernardes (@nicorb)
+- root
+- Stéphane Rimlinger (@srimlinger)
+- Victor Thevenon (@victorthevenon)
+- Xavier Indice (@XavierIndice)
