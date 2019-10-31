@@ -3,7 +3,7 @@
 - Frédéric Venier (@VFrederic)
 - Julien Michaux (@MichauxJulien)
 - Justin Noel (@JustinNoel121u)
-- Mathieu Milhem
+- Mathieu Milhem (@milhem1u)
 - Nathan Barloy (@nathanBarloy)
 - Nicolas Bernardes (@nicorb)
 - root
