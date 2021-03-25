@@ -6,7 +6,6 @@
 - Mathieu Milhem (@milhem1u)
 - Nathan Barloy (@nathanBarloy)
 - Nicolas Bernardes (@nicorb)
-- root
 - Stéphane Rimlinger (@srimlinger)
 - Victor Thevenon (@victorthevenon)
 - Xavier Indice (@XavierIndice)
